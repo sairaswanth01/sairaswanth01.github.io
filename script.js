@@ -7,6 +7,41 @@ function dismissPreloader() {
         }, 800);
     }
 }
+// ================= SKILLS PROGRESS ANIMATION =================
+
+const skillSection = document.querySelector(".skills-section");
+const skillProgressBars = document.querySelectorAll(".skill-progress");
+
+const skillsObserver = new IntersectionObserver(
+    (entries, observer) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                skillProgressBars.forEach((bar) => {
+
+                    const progress = bar.getAttribute("data-progress");
+
+                    bar.style.width = `${progress}%`;
+
+                });
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.2
+    }
+);
+
+if (skillSection) {
+    skillsObserver.observe(skillSection);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(dismissPreloader, 1700);
