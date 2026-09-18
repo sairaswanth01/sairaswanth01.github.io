@@ -362,7 +362,7 @@ body {
     left: 0;
     width: 65%;
     height: 80%;
-    background-color: #fffff;
+    background-color: #FFFFFF;
     border-bottom-right-radius: var(--border-radius);
     z-index: 2;
     display: flex;
