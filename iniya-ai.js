@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         location: "Pudukkottai, Tamil Nadu, India",
         phone: "+91 6374 691 647",
         email: "sairaswanthdev@gmail.com",
-        resume: "resume/resume.pdf",
+        resume: "SAI RASWANTH Resume.pdf",
         github: "https://github.com/mr-sai2005",
         linkedin: "https://www.linkedin.com/in/sai-raswanth-r-d-b94998319"
     };
