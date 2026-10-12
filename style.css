@@ -1787,6 +1787,33 @@ background: linear-gradient( #ffe0ca, #ffa3a3);
     box-shadow 0.35s ease;
 }
 
+.achievement-card--certificate .achievement-content {
+    padding-right: 48px;
+}
+
+.achievement-certificate-link {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    color: #222222;
+    background: #fff7cc;
+    border: 1px solid #e6c53b;
+    border-radius: 50%;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.achievement-certificate-link:hover {
+    color: #ffffff;
+    background: #222222;
+    transform: translateY(-2px);
+}
+
 .achievement-card::before {
   content: "";
   position: absolute;
@@ -1885,6 +1912,17 @@ background: linear-gradient( #ffe0ca, #ffa3a3);
     padding: 22px;
     border-radius: 16px;
   }
+
+    .achievement-certificate-link {
+        top: 18px;
+        right: 18px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .achievement-card--certificate .achievement-content {
+        padding-right: 42px;
+    }
 
   .achievement-number {
     font-size: 25px;
