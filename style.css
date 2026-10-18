@@ -989,7 +989,7 @@ body {
     top: 15vh;
     height: 70vh;
     border-radius: 30px;
-    background: var(--primary-bg);
+    background: linear-gradient(90deg,rgba(110, 0, 0, 1) 1%, rgba(237, 0, 8, 1) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgb(255, 255, 255);
