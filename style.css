@@ -954,7 +954,7 @@ body {
 .filter-btn {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #000000;
+    color: #FFFFFF;
     padding: 0.5rem 1.5rem;
     border-radius: 30px;
     font-family: 'Outfit', sans-serif;
@@ -967,9 +967,9 @@ body {
 
 .filter-btn:hover,
 .filter-btn.active {
-    background-color: #4c005f;
-    border-color:#9710b9;
-    color: #fff;
+    background-color: #F5B800;
+    border-color:#FFDD00;
+    color: #BA0000;
 }
 
 .projects-grid {
@@ -1004,7 +1004,7 @@ body {
     box-shadow: none;
     border-width: 6px;
     border-radius: 10px;
-    border-color: #ffffff;
+    border-color: #FFD500;
 }
 
 
