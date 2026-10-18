@@ -1973,7 +1973,7 @@ body {
   left: -100px;
   width: 300px;
   height: 300px;
-  background: #f4c430;
+    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
   opacity: 0.1;
   filter: blur(90px);
   border-radius: 50%;
@@ -1987,7 +1987,7 @@ body {
   bottom: -100px;
   width: 300px;
   height: 300px;
-  background: #f4c430;
+  background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
   opacity: 0.08;
   filter: blur(90px);
   border-radius: 50%;
