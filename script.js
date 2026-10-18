@@ -4,7 +4,7 @@ function dismissPreloader() {
         preloader.classList.add('preloader-hide');
         setTimeout(() => {
             preloader.style.display = 'none';
-        }, 800);
+        }, 1200);
     }
 }
 // ================= SKILLS PROGRESS ANIMATION =================
