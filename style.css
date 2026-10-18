@@ -907,16 +907,34 @@ body {
     background-image: linear-gradient( 90.1deg,  rgba(122,0,0,1) 8.1%, rgba(217,42,42,1) 74.4% );
     z-index: 5;
 }
-
 .projects-section-title {
     text-align: center;
     font-size: clamp(3rem, 6vw, 5rem);
     font-family: 'Boldonse', sans-serif;
-    background: linear-gradient(315deg in oklch, oklch(88.58% 0.1803 94.93) 0.0%, oklch(84.97% 0.1709 85.97) 20.0%, oklch(80.33% 0.1702 73.74) 40.0%, oklch(75.38% 0.1774 59.65) 60.0%, oklch(71.82% 0.1903 49.84) 80.0%, oklch(69.69% 0.2021 44.18) 100.0%);
     margin-bottom: 2rem;
     position: relative;
     z-index: 2;
+
+    /* Fixed linear gradient with correct oklch syntax */
+    background: linear-gradient(
+      315deg in oklch, 
+      oklch(88.58% 0.1803 94.93) 0%, 
+      oklch(84.97% 0.1709 85.97) 20%, 
+      oklch(80.33% 0.1702 73.74) 40%, 
+      oklch(75.38% 0.1774 59.65) 60%, 
+      oklch(71.82% 0.1903 49.84) 80%, 
+      oklch(69.69% 0.2021 44.18) 100%
+    );
+
+    /* Clips the gradient to your font shapes */
+    -webkit-background-clip: text;
+    background-clip: text;
+  
+    /* Makes original text color invisible so the gradient shines through */
+    -webkit-text-fill-color: transparent;
+    text-color: transparent; /* Fallback */
 }
+
 
 .projects-section-title .highlight {
     color: var(--accent-color);
