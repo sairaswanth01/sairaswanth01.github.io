@@ -1,11 +1,63 @@
-function dismissPreloader() {
+function startPreloaderSequence() {
     const preloader = document.getElementById('preloader');
-    if (preloader && !preloader.classList.contains('preloader-hide')) {
-        preloader.classList.add('preloader-hide');
+    const percentage = document.getElementById('preloader-percentage');
+    const progressTrack = document.querySelector('.preloader-progress-track');
+    const progressFill = document.getElementById('preloader-progress-fill');
+    if (!preloader || !percentage || !progressTrack || !progressFill) return;
+
+    let progress = 0;
+    let pageLoaded = document.readyState === 'complete';
+    let loadStartedAt = 0;
+    const startedAt = performance.now();
+
+    function updateProgress() {
+        const now = performance.now();
+
+        if (pageLoaded) {
+            if (!loadStartedAt) loadStartedAt = now;
+            const loadProgress = Math.min((now - loadStartedAt) / 400, 1);
+            progress = 90 + loadProgress * 10;
+        } else {
+            progress = Math.min((now - startedAt) / 1600 * 90, 90);
+        }
+
+        const displayedProgress = Math.floor(progress);
+        percentage.textContent = `${displayedProgress}%`;
+        percentage.setAttribute('aria-label', `Loading ${displayedProgress}%`);
+        progressFill.style.width = `${displayedProgress}%`;
+        progressTrack.setAttribute('aria-valuenow', String(displayedProgress));
+
+        if (progress < 100) {
+            requestAnimationFrame(updateProgress);
+            return;
+        }
+
+        percentage.textContent = '100%';
+        percentage.setAttribute('aria-label', 'Loading complete');
+        progressFill.style.width = '100%';
+        progressTrack.setAttribute('aria-valuenow', '100');
         setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 800);
+            preloader.classList.add('preloader-show-welcome');
+            setTimeout(() => {
+                preloader.classList.add('preloader-hide');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 950);
+            }, 1900);
+        }, 250);
     }
+
+    window.addEventListener('load', () => {
+        pageLoaded = true;
+    }, { once: true });
+
+    requestAnimationFrame(updateProgress);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startPreloaderSequence, { once: true });
+} else {
+    startPreloaderSequence();
 }
 // ================= SKILLS PROGRESS ANIMATION =================
 
@@ -42,14 +94,6 @@ const skillsObserver = new IntersectionObserver(
 if (skillSection) {
     skillsObserver.observe(skillSection);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(dismissPreloader, 1700);
-});
-
-window.addEventListener('load', () => {
-    setTimeout(dismissPreloader, 1700);
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     const bgVideo = document.querySelector('.bg-video');
