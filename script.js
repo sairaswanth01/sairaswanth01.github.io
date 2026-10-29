@@ -1,3 +1,4 @@
+
 function startPreloaderSequence() {
     const preloader = document.getElementById('preloader');
     const percentage = document.getElementById('preloader-percentage');
@@ -433,4 +434,5 @@ if (certificateModal && certificateImage && certificateCounter && certificateLin
         if (event.key === "ArrowLeft") showCertificate(currentIndex - 1);
         if (event.key === "ArrowRight") showCertificate(currentIndex + 1);
     });
+    
 }
