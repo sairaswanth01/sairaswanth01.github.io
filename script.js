@@ -334,64 +334,53 @@ if (likeBtn) {
             liked = false;
         }
     });
-    const certificateLinks = [
-  ...document.querySelectorAll("[data-certificate]")
-];
-
-const modal = document.getElementById("certificateModal");
-const image = document.getElementById("certificateImage");
-const counter = document.getElementById("certificateCounter");
-
-let currentIndex = 0;
-
-function showCertificate(index) {
-  currentIndex =
-    (index + certificateLinks.length) % certificateLinks.length;
-
-  image.src = certificateLinks[currentIndex].dataset.certificate;
-
-  counter.textContent =
-    `${currentIndex + 1} / ${certificateLinks.length}`;
 }
 
-function openCertificate(index) {
-  showCertificate(index);
-  modal.classList.add("active");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-}
+const certificateLinks = document.querySelectorAll(".achievement-certificate-link");
+const certificateModal = document.getElementById("certificateModal");
+const certificateImage = document.getElementById("certificateImage");
+const certificateCounter = document.getElementById("certificateCounter");
+const certificateClose = document.getElementById("certificateClose");
+const certificatePrev = document.getElementById("certificatePrev");
+const certificateNext = document.getElementById("certificateNext");
 
-function closeCertificate() {
-  modal.classList.remove("active");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-}
+if (certificateModal && certificateImage && certificateCounter && certificateLinks.length) {
+        let currentIndex = 0;
 
-certificateLinks.forEach((link, index) => {
-  link.addEventListener("click", function (event) {
-    event.preventDefault();
-    openCertificate(index);
-  });
-});
+        function showCertificate(index) {
+                currentIndex = (index + certificateLinks.length) % certificateLinks.length;
+                certificateImage.src = certificateLinks[currentIndex].href;
+                certificateCounter.textContent = `${currentIndex + 1} / ${certificateLinks.length}`;
+        }
 
-document.getElementById("certificatePrev").onclick =
-  () => showCertificate(currentIndex - 1);
+        function closeCertificate() {
+                certificateModal.classList.remove("active");
+                certificateModal.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+        }
 
-document.getElementById("certificateNext").onclick =
-  () => showCertificate(currentIndex + 1);
+        certificateLinks.forEach((link, index) => {
+                link.addEventListener("click", event => {
+                        event.preventDefault();
+                        showCertificate(index);
+                        certificateModal.classList.add("active");
+                        certificateModal.setAttribute("aria-hidden", "false");
+                        document.body.style.overflow = "hidden";
+                });
+        });
 
-document.getElementById("certificateClose").onclick =
-  closeCertificate;
+        certificatePrev?.addEventListener("click", () => showCertificate(currentIndex - 1));
+        certificateNext?.addEventListener("click", () => showCertificate(currentIndex + 1));
+        certificateClose?.addEventListener("click", closeCertificate);
 
-modal.addEventListener("click", event => {
-  if (event.target === modal) closeCertificate();
-});
+        certificateModal.addEventListener("click", event => {
+                if (event.target === certificateModal) closeCertificate();
+        });
 
-document.addEventListener("keydown", event => {
-  if (!modal.classList.contains("active")) return;
-
-  if (event.key === "Escape") closeCertificate();
-  if (event.key === "ArrowLeft") showCertificate(currentIndex - 1);
-  if (event.key === "ArrowRight") showCertificate(currentIndex + 1);
-});
+        document.addEventListener("keydown", event => {
+                if (!certificateModal.classList.contains("active")) return;
+                if (event.key === "Escape") closeCertificate();
+                if (event.key === "ArrowLeft") showCertificate(currentIndex - 1);
+                if (event.key === "ArrowRight") showCertificate(currentIndex + 1);
+        });
 }
