@@ -3785,4 +3785,106 @@ blockquote {
         width: 95%;
         height: 85vh;
     }
+   /* Robot Container */
+.sidebar-robot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: transparent;
 }
+
+/* Transparent Robot Card */
+.robot-card {
+    position: relative;
+    width: 320px;
+    height: 360px;
+    max-width: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    backdrop-filter: none;
+}
+
+/* Robot Canvas */
+#robot-canvas {
+    display: block;
+    width: 280px;
+    height: 320px;
+    max-width: 100%;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    background: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+/* Glow Disabled */
+.robot-glow {
+    display: none;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .sidebar-robot {
+        padding: 16px;
+    }
+
+    .robot-card {
+        width: 300px;
+        height: 340px;
+    }
+
+    #robot-canvas {
+        width: 280px;
+        height: 320px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .sidebar-robot {
+        padding: 12px;
+    }
+
+    .robot-card {
+        width: 280px;
+        height: 320px;
+    }
+
+    #robot-canvas {
+        width: 260px;
+        height: 300px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+    .sidebar-robot {
+        padding: 8px;
+    }
+
+    .robot-card {
+        width: 100%;
+        max-width: 280px;
+        height: 300px;
+    }
+
+    #robot-canvas {
+        width: 260px;
+        height: 280px;
+    }
+}
+

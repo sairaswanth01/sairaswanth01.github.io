@@ -1,4 +1,3 @@
-
 function startPreloaderSequence() {
     const preloader = document.getElementById('preloader');
     const percentage = document.getElementById('preloader-percentage');
