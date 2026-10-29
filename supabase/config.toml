@@ -1,0 +1,5 @@
+[functions.telegram-gateway]
+verify_jwt = false
+
+[functions.portfolio-publisher]
+verify_jwt = false

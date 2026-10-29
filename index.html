@@ -433,7 +433,14 @@
             <button class="filter-btn" data-filter="website">Websites</button>
             <button class="filter-btn" data-filter="apps">Apps</button>
             <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+            <button class="filter-btn" data-filter="project">Published Projects</button>
         </div>
+
+        <div class="portfolio-feed-controls" data-feed-scope="projects">
+            <label for="portfolioProjectSearch">Search published projects</label>
+            <input id="portfolioProjectSearch" type="search" data-feed-search="projects" placeholder="Search projects">
+        </div>
+        <p class="portfolio-feed-status" data-feed-status="projects" role="status" aria-live="polite"></p>
 
         <div class="projects-grid">
             <div class="project-card glass-card tilt-effect" data-aos="fade-up" data-category="website">
@@ -551,7 +558,20 @@
     </p>
   </div>
 
-  <div class="certifications-container">
+    <div class="portfolio-feed-controls" data-feed-scope="certifications">
+        <label for="portfolioCertificateSearch">Search published achievements</label>
+        <input id="portfolioCertificateSearch" type="search" data-feed-search="certifications" placeholder="Search achievements">
+        <label class="visually-hidden" for="portfolioCertificateCategory">Filter achievements by category</label>
+        <select id="portfolioCertificateCategory" data-feed-category="certifications">
+            <option value="">All categories</option>
+            <option value="certification">Certifications</option>
+            <option value="conference">Conferences</option>
+            <option value="award">Awards</option>
+        </select>
+    </div>
+    <p class="portfolio-feed-status" data-feed-status="certifications" role="status" aria-live="polite"></p>
+
+    <div class="certifications-container">
 
     <!-- Achievement 1 -->
     <div class="achievement-card" data-aos="fade-right" data-aos-delay="100">
@@ -562,7 +582,7 @@
         <p>Udemy</p>
         <span class="achievement-year">2024</span>
       </div>
-      <a href="projects/certificate.jpeg"
+    <a href="Certificates/Pastel Pink Udemy Certificate Mockup.png"
          target="_blank"
          rel="noopener noreferrer"
          class="achievement-certificate-link"
@@ -577,15 +597,15 @@
       <div class="achievement-number">02</div>
       <div class="achievement-content">
         <span class="achievement-type">CERTIFICATION</span>
-        <h3>Learn CorelDRAW from Beginner to Advanced</h3>
+        <h3>Ultimate Adobe Photoshop Training: From Beginner to Pro</h3>
         <p>Udemy</p>
         <span class="achievement-year">2023</span>
       </div>
-      <a href="projects/certificate.jpeg"
+        <a href="Certificates/Pink Udemy Certificate Mockup.png"
          target="_blank"
          rel="noopener noreferrer"
          class="achievement-certificate-link"
-         aria-label="Open CorelDRAW certificate"
+            aria-label="Open Adobe Photoshop certificate"
          title="Open certificate">
         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
@@ -596,15 +616,15 @@
       <div class="achievement-number">03</div>
       <div class="achievement-content">
         <span class="achievement-type">WORKSHOP</span>
-        <h3>AIML Workshop</h3>
-        <p>Indian Institute of Technology Madras</p>
-        <span class="achievement-year">April 2025</span>
+        <h3>AI and ML with Data Science</h3>
+        <p>Two-day offline workshop by Ethical Edufabrica at IIT Madras.</p>
+        <span class="achievement-year">April 2024</span>
       </div>
-      <a href="projects/certificate.jpeg"
+        <a href="Certificates/ai_ml_workshop_certificate_pink_background.png"
          target="_blank"
          rel="noopener noreferrer"
          class="achievement-certificate-link"
-         aria-label="Open AIML workshop certificate"
+            aria-label="Open AI and ML workshop certificate"
          title="Open certificate">
         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
@@ -615,18 +635,18 @@
       <div class="achievement-number">04</div>
       <div class="achievement-content">
         <span class="achievement-type">PAPER PRESENTATION</span>
-        <h3>Java vs Python Programming in AI &amp; Robotics</h3>
-        <p>
-          Presented at Sri Raja Rajan College of Engineering and Technology
-          Symposium.
-        </p>
-        <span class="achievement-year">2024</span>
+                <h3>International Conference on Engineering and Technology</h3>
+                <p>
+                    Presented a paper on ROS 2-based obstacle avoidance, organized by
+                    Zigma Medicare India with IJBS.
+                </p>
+                <span class="achievement-year">October 24-25, 2026</span>
       </div>
-      <a href="projects/certificate.jpeg"
+            <a href="Certificates/Framed Certificate on Pastel Pink.png"
          target="_blank"
          rel="noopener noreferrer"
          class="achievement-certificate-link"
-         aria-label="Open paper presentation certificate"
+                 aria-label="Open international conference certificate"
          title="Open certificate">
         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
@@ -636,19 +656,19 @@
     <div class="achievement-card" data-aos="fade-right" data-aos-delay="300">
       <div class="achievement-number">05</div>
       <div class="achievement-content">
-        <span class="achievement-type">CONVENTION</span>
-        <h3>SAE Convention 2024</h3>
+                <span class="achievement-type">COMPETITION</span>
+                <h3>Dream2Reality Idea Competition</h3>
         <p>
-          Participated in paper presentation events at intercollege,
-          state and national levels.
+                    Tech Bees presented an inclusive multi-user chat app for accessible
+                    communication and student support.
         </p>
-        <span class="achievement-year">2024</span>
+                <span class="achievement-year">October 28, 2026</span>
       </div>
-      <a href="projects/certificate.jpeg"
+            <a href="Certificates/Pink Chendhuran Appreciation Certificate.png"
          target="_blank"
          rel="noopener noreferrer"
          class="achievement-certificate-link"
-         aria-label="Open SAE Convention certificate"
+                 aria-label="Open Dream2Reality competition certificate"
          title="Open certificate">
         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
@@ -665,14 +685,6 @@
         </p>
         <span class="achievement-year">2026–2027</span>
       </div>
-      <a href="projects/certificate.jpeg"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="achievement-certificate-link"
-         aria-label="Open student coordinator certificate"
-         title="Open certificate">
-        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-      </a>
     </div>
 
     <!-- Achievement 7 -->
@@ -687,14 +699,6 @@
         </p>
         <span class="achievement-year">2025</span>
       </div>
-      <a href="projects/certificate.jpeg"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="achievement-certificate-link"
-         aria-label="Open SIH hackathon certificate"
-         title="Open certificate">
-        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-      </a>
     </div>
 
     <!-- Achievement 8 -->
@@ -723,14 +727,6 @@
         </p>
         <span class="achievement-year">2026</span>
       </div>
-      <a href="projects/certificate.jpeg"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="achievement-certificate-link"
-         aria-label="Open SIH participation certificate"
-         title="Open certificate">
-        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-      </a>
     </div>
 
     <!-- Achievement 10 -->
@@ -740,12 +736,12 @@
       <div class="achievement-number">10</div>
       <div class="achievement-content">
         <span class="achievement-type">COMPETITION / PARTICIPATION</span>
-        <h3>ACGCET QUANTERA '26 Events</h3>
+            <h3>QUANTERA '26 Code Clash</h3>
         <p>
-          Participated in events at Alagappa Chettiar Government College
-          of Engineering and Technology.
+              State-level inter-college symposium organized by the ISTE Chapter
+              at Alagappa Chettiar Government College of Engineering and Technology.
         </p>
-        <span class="achievement-year">2026</span>
+            <span class="achievement-year">October 9, 2026</span>
       </div>
       <a href="projects/certificate.jpeg"
          target="_blank"
@@ -769,7 +765,11 @@
     <div class="certificate-viewer">
         <img id="certificateImage" src="" alt="Certificate preview">
         <p id="certificateCounter"></p>
+        <p id="certificateShareStatus" aria-live="polite"></p>
     </div>
+    <button class="certificate-share" id="certificateShare" aria-label="Copy certificate link" title="Copy certificate link">
+        <i class="fa-solid fa-link" aria-hidden="true"></i>
+    </button>
     <button class="certificate-nav next" id="certificateNext" aria-label="Next certificate">
         &#10095;
     </button>
@@ -818,6 +818,19 @@
     </p>
 
 </div>
+
+    <div class="portfolio-feed-controls" data-feed-scope="research">
+        <label for="portfolioResearchSearch">Search published research</label>
+        <input id="portfolioResearchSearch" type="search" data-feed-search="research" placeholder="Search research and publications">
+        <label class="visually-hidden" for="portfolioResearchCategory">Filter research by category</label>
+        <select id="portfolioResearchCategory" data-feed-category="research">
+            <option value="">All categories</option>
+            <option value="research_paper">Research papers</option>
+            <option value="publication">Journals and publications</option>
+        </select>
+    </div>
+    <p class="portfolio-feed-status" data-feed-status="research" role="status" aria-live="polite"></p>
+    <div id="portfolioResearchPosts" class="research-grid"></div>
 
     <div class="project-marquee-container">
         <div class="project-separator" onclick="window.location.hash='#connect'">
@@ -1073,6 +1086,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js" defer></script>
     <script src="iniya-ai.js" defer></script>
+    <script src="portfolio-config.js" defer></script>
+    <script src="portfolio-content.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof AOS !== 'undefined') {

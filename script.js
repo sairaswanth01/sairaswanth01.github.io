@@ -145,6 +145,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const footerProjectsLink = document.querySelector('.footer-nav-links a[href="#projects"]');
+    const projectsSection = document.getElementById('projects');
+
+    if (footerProjectsLink && projectsSection) {
+        footerProjectsLink.addEventListener('click', event => {
+            event.preventDefault();
+            window.history.pushState(null, '', '#projects');
+            window.scrollTo({
+                top: projectsSection.getBoundingClientRect().top + window.scrollY,
+                behavior: 'instant'
+            });
+        });
+    }
+
     const videos = document.querySelectorAll('video');
     const isSlowConnection = navigator.connection && (navigator.connection.saveData || navigator.connection.effectiveType === '2g' || navigator.connection.effectiveType === 'slow-2g');
     
@@ -242,9 +256,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    const projectGrid = document.querySelector('.projects-grid');
 
-    if (filterBtns.length > 0 && projectCards.length > 0) {
+    if (filterBtns.length > 0 && projectGrid) {
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
@@ -252,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const filterValue = btn.getAttribute('data-filter');
 
-                projectCards.forEach(card => {
+                projectGrid.querySelectorAll('.project-card').forEach(card => {
                     if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                         card.style.display = 'flex';
                     } else {
@@ -343,44 +357,80 @@ const certificateCounter = document.getElementById("certificateCounter");
 const certificateClose = document.getElementById("certificateClose");
 const certificatePrev = document.getElementById("certificatePrev");
 const certificateNext = document.getElementById("certificateNext");
+const certificateShare = document.getElementById("certificateShare");
+const certificateShareStatus = document.getElementById("certificateShareStatus");
 
 if (certificateModal && certificateImage && certificateCounter && certificateLinks.length) {
-        let currentIndex = 0;
+    let currentIndex = 0;
 
-        function showCertificate(index) {
-                currentIndex = (index + certificateLinks.length) % certificateLinks.length;
-                certificateImage.src = certificateLinks[currentIndex].href;
-                certificateCounter.textContent = `${currentIndex + 1} / ${certificateLinks.length}`;
+    function showCertificate(index) {
+        currentIndex = (index + certificateLinks.length) % certificateLinks.length;
+        certificateImage.src = certificateLinks[currentIndex].href;
+        certificateCounter.textContent = `${currentIndex + 1} / ${certificateLinks.length}`;
+        if (certificateShareStatus) certificateShareStatus.textContent = "";
+    }
+
+    function closeCertificate() {
+        certificateModal.classList.remove("active");
+        certificateModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    async function copyCertificateLink() {
+        const certificateUrl = certificateLinks[currentIndex].href;
+
+        try {
+            if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+            await navigator.clipboard.writeText(certificateUrl);
+        } catch {
+            const temporaryInput = document.createElement("textarea");
+            temporaryInput.value = certificateUrl;
+            temporaryInput.style.position = "fixed";
+            temporaryInput.style.opacity = "0";
+            document.body.appendChild(temporaryInput);
+            temporaryInput.select();
+            const copied = document.execCommand("copy");
+            temporaryInput.remove();
+            if (certificateShareStatus) {
+                certificateShareStatus.textContent = copied
+                    ? "Certificate link copied."
+                    : "Unable to copy the certificate link.";
+            }
+            return;
         }
 
-        function closeCertificate() {
-                certificateModal.classList.remove("active");
-                certificateModal.setAttribute("aria-hidden", "true");
-                document.body.style.overflow = "";
-        }
+        if (certificateShareStatus) certificateShareStatus.textContent = "Certificate link copied.";
+    }
 
-        certificateLinks.forEach((link, index) => {
-                link.addEventListener("click", event => {
-                        event.preventDefault();
-                        showCertificate(index);
-                        certificateModal.classList.add("active");
-                        certificateModal.setAttribute("aria-hidden", "false");
-                        document.body.style.overflow = "hidden";
+    certificateLinks.forEach((link, index) => {
+        link.addEventListener("click", event => {
+            event.preventDefault();
+            showCertificate(index);
+            certificateModal.classList.add("active");
+            certificateModal.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+
+            if (typeof gtag === "function") {
+                gtag("event", "certificate_view", {
+                    certificate_name: link.getAttribute("aria-label") || link.href
                 });
+            }
         });
+    });
 
-        certificatePrev?.addEventListener("click", () => showCertificate(currentIndex - 1));
-        certificateNext?.addEventListener("click", () => showCertificate(currentIndex + 1));
-        certificateClose?.addEventListener("click", closeCertificate);
+    certificatePrev?.addEventListener("click", () => showCertificate(currentIndex - 1));
+    certificateNext?.addEventListener("click", () => showCertificate(currentIndex + 1));
+    certificateClose?.addEventListener("click", closeCertificate);
+    certificateShare?.addEventListener("click", copyCertificateLink);
 
-        certificateModal.addEventListener("click", event => {
-                if (event.target === certificateModal) closeCertificate();
-        });
+    certificateModal.addEventListener("click", event => {
+        if (event.target === certificateModal) closeCertificate();
+    });
 
-        document.addEventListener("keydown", event => {
-                if (!certificateModal.classList.contains("active")) return;
-                if (event.key === "Escape") closeCertificate();
-                if (event.key === "ArrowLeft") showCertificate(currentIndex - 1);
-                if (event.key === "ArrowRight") showCertificate(currentIndex + 1);
-        });
+    document.addEventListener("keydown", event => {
+        if (!certificateModal.classList.contains("active")) return;
+        if (event.key === "Escape") closeCertificate();
+        if (event.key === "ArrowLeft") showCertificate(currentIndex - 1);
+        if (event.key === "ArrowRight") showCertificate(currentIndex + 1);
+    });
 }
