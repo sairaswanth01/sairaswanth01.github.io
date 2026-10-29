@@ -334,4 +334,64 @@ if (likeBtn) {
             liked = false;
         }
     });
+    const certificateLinks = [
+  ...document.querySelectorAll("[data-certificate]")
+];
+
+const modal = document.getElementById("certificateModal");
+const image = document.getElementById("certificateImage");
+const counter = document.getElementById("certificateCounter");
+
+let currentIndex = 0;
+
+function showCertificate(index) {
+  currentIndex =
+    (index + certificateLinks.length) % certificateLinks.length;
+
+  image.src = certificateLinks[currentIndex].dataset.certificate;
+
+  counter.textContent =
+    `${currentIndex + 1} / ${certificateLinks.length}`;
+}
+
+function openCertificate(index) {
+  showCertificate(index);
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCertificate() {
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+certificateLinks.forEach((link, index) => {
+  link.addEventListener("click", function (event) {
+    event.preventDefault();
+    openCertificate(index);
+  });
+});
+
+document.getElementById("certificatePrev").onclick =
+  () => showCertificate(currentIndex - 1);
+
+document.getElementById("certificateNext").onclick =
+  () => showCertificate(currentIndex + 1);
+
+document.getElementById("certificateClose").onclick =
+  closeCertificate;
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) closeCertificate();
+});
+
+document.addEventListener("keydown", event => {
+  if (!modal.classList.contains("active")) return;
+
+  if (event.key === "Escape") closeCertificate();
+  if (event.key === "ArrowLeft") showCertificate(currentIndex - 1);
+  if (event.key === "ArrowRight") showCertificate(currentIndex + 1);
+});
 }
