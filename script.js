@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 600);
 
                 // Redirect to the contact section
-                const contactSection = document.querySelector('#contact');
+                const contactSection = document.querySelector('#connect');
 
                 if (contactSection) {
                     contactSection.scrollIntoView({
