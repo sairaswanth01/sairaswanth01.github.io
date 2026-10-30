@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bgVideo) {
     }
 
-    const roles = ["Graphic Designer", "Web Developer", "Java Developer","Maha Purushan"];
+    const roles = ["Graphic Designer", "Web Developer", "Java Developer"];
     const typingTextElement = document.querySelector('.typing-text');
 
     let roleIndex = 0;
