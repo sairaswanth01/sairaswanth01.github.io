@@ -1,447 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="icon" type="image/png" href="/man.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#10172a">
+    <meta name="robots" content="noindex, nofollow">
+    <title>We've moved | Sai Raswanth</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #10172a;
+            color: #f7f8fc;
+            font-synthesis: none;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-width: 320px;
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            padding: 28px;
+            background:
+                radial-gradient(ellipse at 18% 20%, rgba(80, 95, 255, .2), transparent 38%),
+                radial-gradient(ellipse at 84% 82%, rgba(0, 210, 190, .13), transparent 36%),
+                #10172a;
+        }
+
+        .glow {
+            position: fixed;
+            width: 360px;
+            aspect-ratio: 1;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .glow::before,
+        .glow::after {
+            position: absolute;
+            inset: 28px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: inherit;
+            content: "";
+        }
+
+        .glow::after {
+            inset: 58px;
+        }
+
+        .glow-left {
+            top: -210px;
+            left: -150px;
+        }
+
+        .glow-right {
+            right: -210px;
+            bottom: -240px;
+        }
+
+        main {
+            position: relative;
+            width: min(100%, 590px);
+            padding: clamp(32px, 7vw, 58px);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 28px;
+            background: rgba(20, 29, 51, .82);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, .35);
+            text-align: center;
+            backdrop-filter: blur(18px);
+            animation: arrive .7s ease-out both;
+        }
+
+        .mark {
+            display: grid;
+            width: 66px;
+            height: 66px;
+            margin: 0 auto 25px;
+            place-items: center;
+            border: 1px solid rgba(123, 236, 220, .35);
+            border-radius: 21px;
+            background: linear-gradient(145deg, rgba(47, 222, 194, .2), rgba(108, 121, 255, .2));
+            color: #8df1df;
+            font-size: 30px;
+        }
+
+        .eyebrow {
+            margin: 0 0 14px;
+            color: #8df1df;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(38px, 8vw, 58px);
+            letter-spacing: -.055em;
+            line-height: 1.05;
+        }
+
+        .description {
+            max-width: 390px;
+            margin: 18px auto 28px;
+            color: #b7c0d3;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .address-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #8995ad;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .address {
+            display: block;
+            overflow-wrap: anywhere;
+            color: #fff;
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 650;
+            text-decoration-color: rgba(141, 241, 223, .55);
+            text-underline-offset: 5px;
+        }
+
+        .visit {
+            display: inline-flex;
+            min-height: 52px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+            padding: 0 24px;
+            border: 0;
+            border-radius: 14px;
+            background: linear-gradient(100deg, #70e8d2, #9cf0dd);
+            color: #10172a;
+            font: inherit;
+            font-weight: 750;
+            text-decoration: none;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .visit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(112, 232, 210, .2);
+        }
+
+        .countdown {
+            min-height: 22px;
+            margin: 19px 0 0;
+            color: #8995ad;
+            font-size: 13px;
+        }
+
+        .stay {
+            margin-top: 10px;
+            padding: 6px 10px;
+            border: 0;
+            background: transparent;
+            color: #b7c0d3;
+            font: inherit;
+            font-size: 13px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+        }
+
+        .stay:hover {
+            color: #fff;
+        }
+
+        @keyframes arrive {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div id="preloader">
-        <!-- Colorful Curtains for Slide-up Effect -->
-        <div class="loader-curtain curtain-1"></div>
-        <div class="loader-curtain curtain-2"></div>
-        <div class="loader-curtain curtain-3"></div>
+    <div class="glow glow-left" aria-hidden="true"></div>
+    <div class="glow glow-right" aria-hidden="true"></div>
+    <main>
+        <div class="mark" aria-hidden="true">↗</div>
+        <p class="eyebrow">A new home for my website</p>
+        <h1>We've moved!</h1>
+        <p class="description">
+            This website has a new address. Update your bookmarks and visit me at the new site.
+        </p>
+        <span class="address-label">Find me here</span>
+        <a class="address" href="https://sairaswanth01.infinityfree.io/">
+            sairaswanth01.infinityfree.io
+        </a>
+        <a class="visit" href="https://sairaswanth01.infinityfree.io/">
+            Visit the new website <span aria-hidden="true">→</span>
+        </a>
+        <p class="countdown" id="countdown" aria-live="polite">
+            Taking you to the new site in <span id="seconds">10</span> seconds…
+        </p>
+        <button class="stay" id="stay" type="button">Stay on this page</button>
+    </main>
+    <script>
+        const destination = "https://sairaswanth01.infinityfree.io/";
+        const countdown = document.getElementById("countdown");
+        const seconds = document.getElementById("seconds");
+        const stay = document.getElementById("stay");
+        let remaining = 10;
 
-        <div class="loader-content">
-            <div class="loader-logo">SAI<span>RASAWANTH R.D</span></div>
-            <div class="loader-bar-container">
-                <div class="loader-progress"></div>
-            </div>
-            <p>Loading Experience...</p>
-        </div>
-    </div>
+        const timer = window.setInterval(() => {
+            remaining -= 1;
+            seconds.textContent = String(remaining);
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+            if (remaining <= 0) {
+                window.clearInterval(timer);
+                window.location.replace(destination);
+            }
+        }, 1000);
 
-    <div id="main-content" class="content-hidden">
-
-        <div class="top-info-bar">
-            <div class="status-indicator">
-                <span class="status-dot"></span>
-                <span class="status-text">Open for Works & Projects</span>
-            </div>
-            <div class="time-date-display">
-                <span id="current-date"></span>
-                <span class="separator">|</span>
-                <span id="current-time"></span>
-            </div>
-        </div>
-
-        <nav class="navbar">
-            <div class="logo">SAI<span>RASAWANTH R.D</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </nav>
-
-        <section id="home" class="hero section-reveal theme-home">
-            <div class="hero-content">
-                <h2 class="slide-up">Hello, I am</h2>
-                <h1 class="glitch">I am a <span class="typing-text"></span></h1>
-                <p class="fade-in-delayed">I craft dynamic, beautiful, and interactive web experiences bridging the gap
-                    between aesthetics and engineering.</p>
-                <div class="hero-btns slide-up-delayed">
-                    <a href="#projects" class="btn primary-btn">View My Work</a>
-                    <a href="#contact" class="btn secondary-btn">Contact Me</a>
-                </div>
-            </div>
-            <div class="hero-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-        </section>
-
-        <section id="about" class="about section-reveal theme-about">
-            <h2 class="section-title">About <span>Me</span></h2>
-            <div class="about-container">
-                <div class="about-image glass-card">
-                    <img src="file.jpg" alt="Profile Photo" class="profile-img">
-                </div>
-                <div class="about-text">
-                    <h3>Passionate Developer & Designer</h3>
-                    <p>I’m a passionate designer and developer focused on creating visually engaging and user-friendly
-                        digital experiences. With a strong interest in graphic design and web development, I enjoy
-                        turning ideas into meaningful and functional designs.
-
-                        Currently, I’m continuously learning and improving my skills by working on real-world projects.
-                        I believe in combining creativity with technology to build solutions that not only look good but
-                        also deliver value.
-
-                        My goal is to grow as a professional, work on impactful projects, and build a strong career in
-                        the digital field.</p>
-                    <div class="about-btns" style="margin-top: 2.5rem;">
-                        <a href="resume/SAI RASWANTH RD-2.pdf" download class="btn primary-btn">
-                            <span>Download Resume</span>
-                            <i class="fa-solid fa-download"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="skills section-reveal theme-skills">
-            <h2 class="section-title">My <span>Skills</span></h2>
-            <div class="marquee-container">
-                <div class="marquee-content">
-                    <!-- First Set of Skills -->
-                    <div class="skill-item glass-card">
-                        <i class="fa-solid fa-pen-nib skill-icon" style="color: #24A148;"></i>
-                        <h3>CorelDraw</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-html5 skill-icon" style="color: #E34F26;"></i>
-                        <h3>HTML5</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-css3-alt skill-icon" style="color: #1572B6;"></i>
-                        <h3>CSS3</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-js skill-icon" style="color: #F7DF1E;"></i>
-                        <h3>JavaScript</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-java skill-icon" style="color: #007396;"></i>
-                        <h3>Java</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-solid fa-code skill-icon" style="color: #512BD4;"></i>
-                        <h3>.NET</h3>
-                    </div>
-
-                    <!-- Duplicate Set for Seamless Loop -->
-                    <div class="skill-item glass-card">
-                        <i class="fa-solid fa-pen-nib skill-icon" style="color: #24A148;"></i>
-                        <h3>CorelDraw</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-html5 skill-icon" style="color: #E34F26;"></i>
-                        <h3>HTML5</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-css3-alt skill-icon" style="color: #1572B6;"></i>
-                        <h3>CSS3</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-js skill-icon" style="color: #F7DF1E;"></i>
-                        <h3>JavaScript</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-brands fa-java skill-icon" style="color: #007396;"></i>
-                        <h3>Java</h3>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <i class="fa-solid fa-code skill-icon" style="color: #512BD4;"></i>
-                        <h3>.NET</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="services section-reveal theme-services">
-            <h2 class="section-title">My <span>Services</span></h2>
-            <div class="services-container">
-                <div class="service-card glass-card tilt-effect">
-                    <div class="service-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                    <h3>UI/UX Design</h3>
-                    <p>Creating intuitive and stunning user interfaces with a focus on seamless user experiences and modern aesthetics.</p>
-                </div>
-                <div class="service-card glass-card tilt-effect">
-                    <div class="service-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3>Web Design & Development</h3>
-                    <p>Building responsive, high-performance websites using modern technologies, clean code, and interactive elements.</p>
-                </div>
-                <div class="service-card glass-card tilt-effect">
-                    <div class="service-icon"><i class="fa-solid fa-id-card"></i></div>
-                    <h3>Portfolio & Branding</h3>
-                    <p>Helping individuals stand out with unique, custom-crafted digital identities and professional personal websites.</p>
-                </div>
-                <div class="service-card glass-card tilt-effect">
-                    <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
-                    <h3>Graphic Design</h3>
-                    <p>Designing vibrant posters, logos, and marketing materials that capture your brand's essence and attract attention.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects section-reveal theme-projects">
-            <h2 class="section-title">Featured <span>Projects</span></h2>
-
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="graphic">Graphic Designs</button>
-                <button class="filter-btn" data-filter="website">Websites</button>
-                <button class="filter-btn" data-filter="apps">Apps</button>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Website Project 1 -->
-                <div class="project-card glass-card tilt-effect" data-category="website">
-                    <div class="project-img" style="background: linear-gradient(45deg, rgba(43, 88, 118, 0.8), rgba(78, 67, 118, 0.8)), url('https://s.wordpress.com/mshots/v1/https%3A%2F%2Fchendhuran.ac.in%2F?w=800'); background-size: cover; background-position: top; background-blend-mode: overlay;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Website</span>
-                        <h3>Chendhuran College Portal</h3>
-                        <p>A comprehensive academic portal for a premier educational institution with student and faculty resources.</p>
-                        <div class="project-links">
-                            <a href="https://chendhuran.ac.in/" target="_blank" class="project-link demo-link">Live Demo <i
-                                    class="fa-solid fa-external-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- App Project 1 -->
-                <div class="project-card glass-card tilt-effect" data-category="apps">
-                    <div class="project-img" style="background: linear-gradient(45deg, rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8), rgba(44, 83, 100, 0.8)), url('https://s.wordpress.com/mshots/v1/https%3A%2F%2Fccetattendance.infinityfree.me?w=800'); background-size: cover; background-position: top; background-blend-mode: overlay;"></div>
-                    <div class="project-info">
-                        <span class="project-category">App</span>
-                        <h3>CCET Attendance System</h3>
-                        <p>A digital solution for automated student attendance tracking, academic reporting, and administrative efficiency.</p>
-                        <div class="project-links">
-                            <a href="https://ccetattendance.infinityfree.me" target="_blank" class="project-link demo-link">Launch App <i class="fa-solid fa-rocket"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Graphic Design Project 1 -->
-                <div class="project-card glass-card tilt-effect" data-category="graphic">
-                    <div class="project-img" style="background-image: url('projects/portfolio-3.jpg'); background-size: cover;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Graphic Design</span>
-                        <h3>Academic Event Poster</h3>
-                        <p>A vibrant and professional poster design for the Pongal Celebration event at Chendhuran College.</p>
-                        <div class="project-links">
-                            <a href="projects/portfolio-3.jpg" target="_blank" class="project-link demo-link">View Full Design <i class="fa-solid fa-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Graphic Design Project 2 -->
-                <div class="project-card glass-card tilt-effect" data-category="graphic">
-                    <div class="project-img" style="background-image: url('projects/Apple Transparent -1.jpg'); background-size: cover;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Graphic Design</span>
-                        <h3>Heart Health Awareness</h3>
-                        <p>A minimalist and impactful social media graphic promoting the benefits of healthy eating and heart health.</p>
-                        <div class="project-links">
-                            <a href="projects/Apple Transparent -1.jpg" target="_blank" class="project-link demo-link">View Full Design <i class="fa-solid fa-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Graphic Design Project 3 -->
-                <div class="project-card glass-card tilt-effect" data-category="graphic">
-                    <div class="project-img" style="background-image: url('projects/ICE CREAM RGB.jpg'); background-size: cover;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Graphic Design</span>
-                        <h3>Strawberry Ice Cream Ad</h3>
-                        <p>A high-fidelity product advertisement with a focus on appetite appeal and dynamic composition.</p>
-                        <div class="project-links">
-                            <a href="projects/ICE CREAM RGB.jpg" target="_blank" class="project-link demo-link">View Full Design <i class="fa-solid fa-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Website Project 2 -->
-                <div class="project-card glass-card tilt-effect" data-category="website">
-                    <div class="project-img" style="background: linear-gradient(45deg, rgba(255, 81, 47, 0.8), rgba(221, 36, 118, 0.8)), url('https://s.wordpress.com/mshots/v1/https%3A%2F%2Fyogauniquejewellery.in%2F?w=800'); background-size: cover; background-position: top; background-blend-mode: overlay;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Website</span>
-                        <h3>Yoga Unique Jewellery</h3>
-                        <p>A sophisticated e-commerce platform for artisan jewelry featuring secure payments and elegant product catalogs.</p>
-                        <div class="project-links">
-                            <a href="https://yogauniquejewellery.in/" target="_blank" class="project-link demo-link">Live Demo <i
-                                    class="fa-solid fa-external-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Website Project 3 -->
-                <div class="project-card glass-card tilt-effect" data-category="website">
-                    <div class="project-img" style="background: linear-gradient(45deg, rgba(31, 64, 55, 0.8), rgba(153, 242, 200, 0.8)), url('https://s.wordpress.com/mshots/v1/https%3A%2F%2Fclansofgraphics.netlify.app%2F?w=800'); background-size: cover; background-position: top; background-blend-mode: overlay;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Website</span>
-                        <h3>Clans of Graphics</h3>
-                        <p>A creative agency portfolio and community platform showcasing digital art and design collaborations.</p>
-                        <div class="project-links">
-                            <a href="https://clansofgraphics.netlify.app/" target="_blank" class="project-link demo-link">Live Demo <i
-                                    class="fa-solid fa-external-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Website Project 4 -->
-                <div class="project-card glass-card tilt-effect" data-category="website">
-                    <div class="project-img" style="background: linear-gradient(45deg, rgba(75, 108, 183, 0.8), rgba(24, 40, 72, 0.8)), url('https://s.wordpress.com/mshots/v1/https%3A%2F%2Fweb.chendhuran.ac.in%2F?w=800'); background-size: cover; background-position: top; background-blend-mode: overlay;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Website</span>
-                        <h3>Chendhuran Academic Hub</h3>
-                        <p>An advanced academic management system for streamlined digital administration and student tracking.</p>
-                        <div class="project-links">
-                            <a href="https://web.chendhuran.ac.in/" target="_blank" class="project-link demo-link">Live Demo <i
-                                    class="fa-solid fa-external-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- App Project 2 -->
-                <div class="project-card glass-card tilt-effect" data-category="apps">
-                    <div class="project-img" style="background: linear-gradient(45deg, rgba(0, 176, 155, 0.8), rgba(150, 201, 61, 0.8)), url('https://s.wordpress.com/mshots/v1/https%3A%2F%2Ftransport.chendhuran.ac.in%2Flogin.php?w=800'); background-size: cover; background-position: top; background-blend-mode: overlay;"></div>
-                    <div class="project-info">
-                        <span class="project-category">App</span>
-                        <h3>College Transport Tracker</h3>
-                        <p>A comprehensive transport management system for monitoring vehicle routes, schedules, and student logs.</p>
-                        <div class="project-links">
-                            <a href="https://transport.chendhuran.ac.in/login.php" target="_blank" class="project-link demo-link">Launch App <i class="fa-solid fa-rocket"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Graphic Design Project 4 -->
-                <div class="project-card glass-card tilt-effect" data-category="graphic">
-                    <div class="project-img" style="background-image: url('projects/AC logo Polarize.jpg'); background-size: cover;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Graphic Design</span>
-                        <h3>Polarize Brand Identity</h3>
-                        <p>A clean and modern brand identity design including logo creation and professional room mockup.</p>
-                        <div class="project-links">
-                            <a href="projects/AC logo Polarize.jpg" target="_blank" class="project-link demo-link">View Full Design <i class="fa-solid fa-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Graphic Design Project 5 -->
-                <div class="project-card glass-card tilt-effect" data-category="graphic">
-                    <div class="project-img" style="background-image: url('projects/Scent Poster.jpg'); background-size: cover;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Graphic Design</span>
-                        <h3>Scent Product Poster</h3>
-                        <p>A sophisticated product poster design emphasizing elegance and olfactory appeal.</p>
-                        <div class="project-links">
-                            <a href="projects/Scent Poster.jpg" target="_blank" class="project-link demo-link">View Full Design <i class="fa-solid fa-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Graphic Design Project 6 -->
-                <div class="project-card glass-card tilt-effect" data-category="graphic">
-                    <div class="project-img" style="background-image: url('projects/Sprite AD Poster CYMK.jpg'); background-size: cover;"></div>
-                    <div class="project-info">
-                        <span class="project-category">Graphic Design</span>
-                        <h3>Sprite Refreshment Ad</h3>
-                        <p>A high-energy advertisement poster focusing on refreshment and vibrant brand colors.</p>
-                        <div class="project-links">
-                            <a href="projects/Sprite AD Poster CYMK.jpg" target="_blank" class="project-link demo-link">View Full Design <i class="fa-solid fa-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact section-reveal theme-contact">
-            <h2 class="section-title">Get In <span>Touch</span></h2>
-            <div class="contact-container glass-card">
-                <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                    <!-- Web3Forms Access Key -->
-                    <input type="hidden" name="access_key" value="a7187997-9c66-4a8d-b96e-40289cee5f9f">
-
-                    <div class="input-group">
-                        <input type="text" name="name" id="name" required>
-                        <label for="name">Your Name</label>
-                        <div class="input-border"></div>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" name="email" id="email" required>
-                        <label for="email">Your Email</label>
-                        <div class="input-border"></div>
-                    </div>
-                    <div class="input-group select-group">
-                        <select name="project_type" id="project_type" required>
-                            <option value="" disabled selected hidden></option>
-                            <option value="Graphic Design">Graphic Design</option>
-                            <option value="Website">Website</option>
-                            <option value="App">App</option>
-                        </select>
-                        <label for="project_type">Project Type</label>
-                        <div class="input-border"></div>
-                    </div>
-                    <div class="input-group">
-                        <textarea name="message" id="message" rows="5" required></textarea>
-                        <label for="message">Your Message</label>
-                        <div class="input-border"></div>
-                    </div>
-
-                    <!-- Optional: Success Redirection -->
-                    <!-- <input type="hidden" name="redirect" value="https://web3forms.com/success"> -->
-
-                    <button type="submit" class="submit-btn btn primary-btn">
-                        <span>Send Message</span>
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <footer class="footer theme-projects">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <div class="logo">SAI<span>RASAWANTH R.D</span></div>
-                    <p class="footer-address">
-                        <i class="fa-solid fa-location-dot"></i>
-                        No7, Ayyanarpuram Middle street Pudukkottai - Tamilnadu
-                    </p>
-                    <p class="footer-email">
-                        <i class="fa-solid fa-envelope"></i>
-                        sairaswanthdev@gmail.com
-                    </p>
-                </div>
-
-                <div class="footer-social">
-                    <h4>Follow Me</h4>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/mr_sai_2005/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/sairaswanth2005/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/sair2005" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 SAIRASAWANTH R.D. All Rights Reserved.</p>
-            </div>
-        </footer>
-
-    </div> <!-- End main-content -->
-
-    <script src="script.js"></script>
+        stay.addEventListener("click", () => {
+            window.clearInterval(timer);
+            countdown.textContent = "Automatic redirect paused.";
+            stay.hidden = true;
+        });
+    </script>
 </body>
-
 </html>
