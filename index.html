@@ -990,9 +990,8 @@
 
 <style>
 #projects {
-:root {
   --bg: radial-gradient(circle at 50% 50%,
-    oklch(96.85% 0.0254 75.26) 0.0%,
+    oklch(96.85% 0.0254 75.26) 0%,
     oklch(96.52% 0.0275 74.13) 3.2%,
     oklch(96.10% 0.0299 72.71) 6.5%,
     oklch(95.60% 0.0327 71.05) 9.7%,
@@ -1001,7 +1000,7 @@
     oklch(93.81% 0.0419 64.99) 19.4%,
     oklch(93.14% 0.0451 62.74) 22.6%,
     oklch(92.47% 0.0481 60.45) 25.8%,
-    oklch(91.81% 0.0512 58.16) 29.0%,
+    oklch(91.81% 0.0512 58.16) 29%,
     oklch(91.16% 0.0541 55.90) 32.3%,
     oklch(90.52% 0.0568 53.67) 35.5%,
     oklch(89.89% 0.0596 51.31) 38.7%,
@@ -1014,7 +1013,7 @@
     oklch(85.10% 0.0767 33.64) 61.3%,
     oklch(84.36% 0.0786 31.29) 64.5%,
     oklch(83.60% 0.0806 29.06) 67.7%,
-    oklch(82.75% 0.0827 26.80) 71.0%,
+    oklch(82.75% 0.0827 26.80) 71%,
     oklch(81.84% 0.0849 24.51) 74.2%,
     oklch(80.88% 0.0872 22.22) 77.4%,
     oklch(79.90% 0.0895 19.98) 80.6%,
@@ -1023,648 +1022,748 @@
     oklch(77.13% 0.0961 13.92) 90.3%,
     oklch(76.35% 0.0979 12.26) 93.5%,
     oklch(75.70% 0.0994 10.84) 96.8%,
-    oklch(75.20% 0.1006 9.72) 100.0%
+    oklch(75.20% 0.1006 9.72) 100%
   );
-    --accent: #30c7ec;
-    --line: rgba(255,255,255,.13);
-    --card-w: 280px;
-    --card-h: 390px;
 
-    width: 100%;
-    min-height: 750px;
-    padding: 75px 15px 55px;
-    background: var(--bg);
-    color: white;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  --accent: #30c7ec;
+  --line: rgba(255,255,255,.13);
+  --card-w: 280px;
+  --card-h: 390px;
+
+  width: 100%;
+  min-height: 750px;
+  padding: 75px 15px 55px;
+  background: var(--bg);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 #projects * { box-sizing: border-box; }
 
 #projects .projects-stage {
-    width: min(100%, 900px);
-    text-align: center;
+  width: min(100%, 900px);
+  text-align: center;
 }
 
 #projects .projects-heading {
-    font-size: clamp(28px,5vw,46px);
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 12px;
+  font-size: clamp(28px,5vw,46px);
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
 }
 
 #projects .projects-heading span { color: var(--accent); }
 
 #projects .projects-subtitle {
-    font-size: 12px;
-    color: rgba(255,255,255,.5);
-    letter-spacing: 2px;
-    margin-bottom: 35px;
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  letter-spacing: 2px;
+  margin-bottom: 35px;
 }
 
 #projects .projects-carousel {
-    position: relative;
-    width: 100%;
-    height: 440px;
-    perspective: 1400px;
-    user-select: none;
-    touch-action: pan-y;
+  position: relative;
+  width: 100%;
+  height: 440px;
+  perspective: 1400px;
+  user-select: none;
+  touch-action: pan-y;
 }
 
 #projects .projects-ring {
-    position: absolute;
-    inset: 0;
-    transform-style: preserve-3d;
-    will-change: transform;
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 #projects .project-record {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: var(--card-w);
-    height: var(--card-h);
-    margin: calc(var(--card-h)/-2) 0 0 calc(var(--card-w)/-2);
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 22px;
-    background: linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.025));
-    border: 1px solid var(--line);
-    backdrop-filter: blur(12px);
-    box-shadow: inset 0 1px 2px rgba(255,255,255,.15),0 20px 45px rgba(0,0,0,.5);
-    overflow: hidden;
-    cursor: grab;
-    backface-visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--card-w);
+  height: var(--card-h);
+  margin: calc(var(--card-h)/-2) 0 0 calc(var(--card-w)/-2);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  background: linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.025));
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.15),0 20px 45px rgba(0,0,0,.5);
+  overflow: hidden;
+  cursor: grab;
+  backface-visibility: hidden;
 }
 
 #projects .project-record::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg,hsla(var(--hue),100%,60%,.28),transparent 55%);
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg,hsla(var(--hue),100%,60%,.28),transparent 55%);
+  pointer-events: none;
 }
 
 #projects .project-image {
-    position: relative;
-    width: 100%;
-    height: 175px;
-    flex-shrink: 0;
-    border-radius: 14px;
-    overflow: hidden;
-    background: rgba(255,255,255,.06);
+  position: relative;
+  width: 100%;
+  height: 175px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,.06);
 }
 
 #projects .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .5s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s;
 }
 
 #projects .project-record:hover img { transform: scale(1.08); }
 
 #projects .project-details {
-    position: relative;
-    z-index: 1;
-    padding: 15px 7px 5px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    text-align: left;
+  position: relative;
+  z-index: 1;
+  padding: 15px 7px 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: left;
 }
 
 #projects .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 12px;
 }
 
 #projects .project-tag {
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    color: rgba(255,255,255,.7);
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.1);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  color: rgba(255,255,255,.7);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
 }
 
 #projects .project-title {
-    font-size: 19px;
-    font-weight: 600;
-    margin: 0 0 9px;
-    color: white;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0 0 9px;
+  color: white;
 }
 
 #projects .project-description {
-    font-size: 11px;
-    line-height: 1.6;
-    color: rgba(255,255,255,.58);
-    margin: 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(255,255,255,.58);
+  margin: 0;
 }
 
 #projects .project-action {
-    display: inline-flex;
-    width: fit-content;
-    margin-top: auto;
-    padding: 9px 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    background: rgba(48,199,236,.17);
-    border: 1px solid rgba(48,199,236,.4);
-    transition: .3s;
+  display: inline-flex;
+  width: fit-content;
+  margin-top: auto;
+  padding: 9px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(48,199,236,.17);
+  border: 1px solid rgba(48,199,236,.4);
+  transition: .3s;
 }
 
 #projects .project-action:hover {
-    background: var(--accent);
-    color: #07151b;
+  background: var(--accent);
+  color: #07151b;
 }
 
 #projects .projects-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 22px;
-    margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 25px;
 }
 
 #projects .projects-nav {
-    width: 42px;
-    height: 42px;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    background: transparent;
-    color: white;
-    font-size: 23px;
-    cursor: pointer;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
 }
 
 #projects .projects-nav:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 #projects .projects-dial {
-    position: relative;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
+  position: relative;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
 }
 
 #projects .projects-dial::before {
-    content: "";
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
-    border: 1px dashed rgba(255,255,255,.2);
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255,255,255,.2);
 }
 
 #projects .projects-needle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 15px;
-    background: var(--accent);
-    transform-origin: bottom center;
-    margin: -15px 0 0 -1px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 15px;
+  background: var(--accent);
+  transform-origin: bottom center;
+  margin: -15px 0 0 -1px;
 }
 
 #projects .projects-now-playing {
-    margin-top: 22px;
-    min-height: 20px;
-    font-size: 12px;
-    color: rgba(255,255,255,.5);
+  margin-top: 22px;
+  min-height: 20px;
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
 }
 
 #projects .projects-now-playing strong { color: white; }
 
 #projects .projects-counter {
-    margin-top: 9px;
-    color: var(--accent);
-    font-size: 11px;
-    letter-spacing: 2px;
+  margin-top: 9px;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 2px;
 }
 
 #projects .projects-hint {
-    margin-top: 12px;
-    font-size: 10px;
-    color: rgba(255,255,255,.35);
-    letter-spacing: 1px;
+  margin-top: 12px;
+  font-size: 10px;
+  color: rgba(255,255,255,.35);
+  letter-spacing: 1px;
 }
 
 @media(max-width:600px) {
-    #projects {
-        --card-w: 245px;
-        --card-h: 380px;
-        min-height: 690px;
-        padding: 55px 5px;
-    }
+  #projects {
+    --card-w: 245px;
+    --card-h: 380px;
+    min-height: 690px;
+    padding: 55px 5px;
+  }
 
-    #projects .projects-carousel { height: 410px; }
-    #projects .project-image { height: 155px; }
-    #projects .projects-heading { letter-spacing: 1px; }
+  #projects .projects-carousel { height: 410px; }
+  #projects .project-image { height: 155px; }
+  #projects .projects-heading { letter-spacing: 1px; }
 }
 
 @media(prefers-reduced-motion:reduce) {
-    #projects * { scroll-behavior: auto !important; }
+  #projects * { scroll-behavior: auto !important; }
 }
 </style>
 
+<section id="projects">
+
 <div class="projects-stage">
 
-    <h2 class="projects-heading">
-        SELECTED <span>WORKS</span>
-    </h2>
+  <h2 class="projects-heading">
+    SELECTED <span>WORKS</span>
+  </h2>
 
-    <p class="projects-subtitle">
-        EXPLORE MY CREATIVE & DEVELOPMENT PROJECTS
-    </p>
+  <p class="projects-subtitle">
+    EXPLORE MY CREATIVE & DEVELOPMENT PROJECTS
+  </p>
 
-    <div class="projects-carousel"
-         id="projectsCarousel"
-         tabindex="0"
-         role="region"
-         aria-label="Portfolio projects carousel">
+  <div class="projects-carousel"
+       id="projectsCarousel"
+       tabindex="0"
+       role="region"
+       aria-label="Portfolio projects carousel">
 
-        <div class="projects-ring" id="projectsRing"></div>
+    <div class="projects-ring" id="projectsRing"></div>
 
+  </div>
+
+  <div class="projects-controls">
+
+    <button class="projects-nav" id="projectsPrev"
+            aria-label="Previous project">&#8249;</button>
+
+    <div class="projects-dial">
+      <span class="projects-needle" id="projectsNeedle"></span>
     </div>
 
-    <div class="projects-controls">
+    <button class="projects-nav" id="projectsNext"
+            aria-label="Next project">&#8250;</button>
 
-        <button class="projects-nav" id="projectsPrev"
-                aria-label="Previous project">&#8249;</button>
+  </div>
 
-        <div class="projects-dial">
-            <span class="projects-needle" id="projectsNeedle"></span>
-        </div>
+  <div class="projects-now-playing"
+       id="projectsNowPlaying" aria-live="polite">
+    Explore my selected works
+  </div>
 
-        <button class="projects-nav" id="projectsNext"
-                aria-label="Next project">&#8250;</button>
+  <div class="projects-counter" id="projectsCounter">
+    01 / 09
+  </div>
 
-    </div>
-
-    <div class="projects-now-playing"
-         id="projectsNowPlaying" aria-live="polite">
-        Explore my selected works
-    </div>
-
-    <div class="projects-counter" id="projectsCounter">01 / 09</div>
-
-    <div class="projects-hint">
-        DRAG TO ROTATE · ← / → TO NAVIGATE · SPACE TO PAUSE
-    </div>
+  <div class="projects-hint">
+    DRAG TO ROTATE · ← / → TO NAVIGATE · SPACE TO PAUSE
+  </div>
 
 </div>
 
 <script>
 (function () {
 
-const root = document.getElementById("projects");
-if (!root || root.dataset.initialized) return;
-root.dataset.initialized = "true";
+  const root = document.getElementById("projects");
+  if (!root || root.dataset.initialized) return;
+  root.dataset.initialized = "true";
 
-const projects = [
-{
-title:"Chendhuran College Website",
-desc:"A comprehensive academic portal providing student and faculty resources.",
-category:"Website",
-tags:["Web Development","Education"],
-image:"https://s.wordpress.com/mshots/v1/https%3A%2F%2Fchendhuran.ac.in%2F?w=800",
-link:"https://chendhuran.ac.in/",
-action:"Live Demo",hue:210
-},
-{
-title:"Heart Health Awareness",
-desc:"A minimalist social media graphic promoting healthy eating and heart health.",
-category:"Graphic Design",
-tags:["Social Media","Design"],
-image:"projects/Apple Transparent -1.jpg",
-link:"projects/Apple Transparent -1.jpg",
-action:"View Design",hue:350
-},
-{
-title:"Strawberry Ice Cream Ad",
-desc:"A product advertisement focusing on appetite appeal and visual composition.",
-category:"Graphic Design",
-tags:["Advertisement","Product"],
-image:"projects/ICE CREAM RGB.jpg",
-link:"projects/ICE CREAM RGB.jpg",
-action:"View Design",hue:330
-},
-{
-title:"Polarize Brand Identity",
-desc:"A modern brand identity design featuring logo creation and professional presentation.",
-category:"Graphic Design",
-tags:["Branding","Logo"],
-image:"projects/AC logo Polarize.jpg",
-link:"projects/AC logo Polarize.jpg",
-action:"View Design",hue:190
-},
-{
-title:"Scent Product Poster",
-desc:"A sophisticated product poster emphasizing elegance and premium aesthetics.",
-category:"Graphic Design",
-tags:["Poster","Product"],
-image:"projects/Scent Poster.jpg",
-link:"projects/Scent Poster.jpg",
-action:"View Design",hue:40
-},
-{
-title:"Sprite Refreshment Ad",
-desc:"A vibrant advertisement poster focusing on refreshment and brand presentation.",
-category:"Graphic Design",
-tags:["Advertisement","Branding"],
-image:"projects/Sprite AD Poster CYMK.jpg",
-link:"projects/Sprite AD Poster CYMK.jpg",
-action:"View Design",hue:120
-},
-{
-title:"INVENTRA",
-desc:"A smart inventory management system for products, stock, sales, purchases and suppliers.",
-category:"Published Project",
-tags:["PHP","MySQL"],
-image:"projects/inventra.png",
-link:"https://invtmgmtsm.gt.tc/",
-action:"Live Demo",hue:170
-},
-{
-title:"Medi-AI",
-desc:"An intelligent healthcare monitoring and patient management system.",
-category:"Published Project",
-tags:["PHP","Healthcare"],
-image:"projects/mediai.png",
-link:"https://mediaism.gt.tc/",
-action:"Live Demo",hue:270
-},
-{
-title:"EduSphere AI",
-desc:"An intelligent campus ecosystem for academic analytics and AI-powered learning management.",
-category:"Published Project",
-tags:["PHP","AI","MySQL"],
-image:"projects/edusphere.png",
-link:"https://edusphereaism.xo.je/",
-action:"Live Demo",hue:220
-}
-];
+  const projects = [
+    {
+      title:"Chendhuran College Website",
+      desc:"A comprehensive academic portal providing student and faculty resources.",
+      category:"Website",
+      tags:["Web Development","Education"],
+      image:"https://s.wordpress.com/mshots/v1/https%3A%2F%2Fchendhuran.ac.in%2F?w=800",
+      link:"https://chendhuran.ac.in/",
+      action:"Live Demo",hue:210
+    },
+    {
+      title:"Heart Health Awareness",
+      desc:"A minimalist social media graphic promoting healthy eating and heart health.",
+      category:"Graphic Design",
+      tags:["Social Media","Design"],
+      image:"projects/Apple Transparent -1.jpg",
+      link:"projects/Apple Transparent -1.jpg",
+      action:"View Design",hue:350
+    },
+    {
+      title:"Strawberry Ice Cream Ad",
+      desc:"A product advertisement focusing on appetite appeal and visual composition.",
+      category:"Graphic Design",
+      tags:["Advertisement","Product"],
+      image:"projects/ICE CREAM RGB.jpg",
+      link:"projects/ICE CREAM RGB.jpg",
+      action:"View Design",hue:330
+    },
+    {
+      title:"Polarize Brand Identity",
+      desc:"A modern brand identity design featuring logo creation and professional presentation.",
+      category:"Graphic Design",
+      tags:["Branding","Logo"],
+      image:"projects/AC logo Polarize.jpg",
+      link:"projects/AC logo Polarize.jpg",
+      action:"View Design",hue:190
+    },
+    {
+      title:"Scent Product Poster",
+      desc:"A sophisticated product poster emphasizing elegance and premium aesthetics.",
+      category:"Graphic Design",
+      tags:["Poster","Product"],
+      image:"projects/Scent Poster.jpg",
+      link:"projects/Scent Poster.jpg",
+      action:"View Design",hue:40
+    },
+    {
+      title:"Sprite Refreshment Ad",
+      desc:"A vibrant advertisement poster focusing on refreshment and brand presentation.",
+      category:"Graphic Design",
+      tags:["Advertisement","Branding"],
+      image:"projects/Sprite AD Poster CYMK.jpg",
+      link:"projects/Sprite AD Poster CYMK.jpg",
+      action:"View Design",hue:120
+    },
+    {
+      title:"INVENTRA",
+      desc:"A smart inventory management system for products, stock, sales, purchases and suppliers.",
+      category:"Published Project",
+      tags:["PHP","MySQL"],
+      image:"projects/inventra.png",
+      link:"https://invtmgmtsm.gt.tc/",
+      action:"Live Demo",hue:170
+    },
+    {
+      title:"Medi-AI",
+      desc:"An intelligent healthcare monitoring and patient management system.",
+      category:"Published Project",
+      tags:["PHP","Healthcare"],
+      image:"projects/mediai.png",
+      link:"https://mediaism.gt.tc/",
+      action:"Live Demo",hue:270
+    },
+    {
+      title:"EduSphere AI",
+      desc:"An intelligent campus ecosystem for academic analytics and AI-powered learning management.",
+      category:"Published Project",
+      tags:["PHP","AI","MySQL"],
+      image:"projects/edusphere.png",
+      link:"https://edusphereaism.xo.je/",
+      action:"Live Demo",hue:220
+    }
+  ];
 
-const ring = root.querySelector("#projectsRing");
-const carousel = root.querySelector("#projectsCarousel");
-const needle = root.querySelector("#projectsNeedle");
-const nowPlaying = root.querySelector("#projectsNowPlaying");
-const counter = root.querySelector("#projectsCounter");
-const prevBtn = root.querySelector("#projectsPrev");
-const nextBtn = root.querySelector("#projectsNext");
+  const ring = root.querySelector("#projectsRing");
+  const carousel = root.querySelector("#projectsCarousel");
+  const needle = root.querySelector("#projectsNeedle");
+  const nowPlaying = root.querySelector("#projectsNowPlaying");
+  const counter = root.querySelector("#projectsCounter");
+  const prevBtn = root.querySelector("#projectsPrev");
+  const nextBtn = root.querySelector("#projectsNext");
 
-const count = projects.length;
-const step = 360 / count;
-const cardWidth = parseFloat(
-getComputedStyle(root).getPropertyValue("--card-w")
-);
-const radius = Math.round(
-(cardWidth / 2) / Math.tan(Math.PI / count)
-);
-const reduceMotion = window.matchMedia(
-"(prefers-reduced-motion: reduce)"
-).matches;
+  const count = projects.length;
+  const step = 360 / count;
 
-projects.forEach(p => {
-const card = document.createElement("article");
-card.className = "project-record";
-card.style.setProperty("--hue",p.hue+"deg");
+  const cardWidth = parseFloat(
+    getComputedStyle(root).getPropertyValue("--card-w")
+  );
 
-const imgBox = document.createElement("div");
-imgBox.className = "project-image";
+  const radius = Math.round(
+    (cardWidth / 2) / Math.tan(Math.PI / count)
+  );
 
-const img = document.createElement("img");
-img.src = p.image;
-img.alt = p.title;
-img.loading = "lazy";
-imgBox.appendChild(img);
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-const details = document.createElement("div");
-details.className = "project-details";
+  projects.forEach(p => {
 
-const tags = document.createElement("div");
-tags.className = "project-tags";
+    const card = document.createElement("article");
+    card.className = "project-record";
+    card.style.setProperty("--hue",p.hue+"deg");
 
-p.tags.forEach(t => {
-const span = document.createElement("span");
-span.className = "project-tag";
-span.textContent = t;
-tags.appendChild(span);
-});
+    const imgBox = document.createElement("div");
+    imgBox.className = "project-image";
 
-const title = document.createElement("h3");
-title.className = "project-title";
-title.textContent = p.title;
+    const img = document.createElement("img");
+    img.src = p.image;
+    img.alt = p.title;
+    img.loading = "lazy";
+    imgBox.appendChild(img);
 
-const desc = document.createElement("p");
-desc.className = "project-description";
-desc.textContent = p.desc;
+    const details = document.createElement("div");
+    details.className = "project-details";
 
-const link = document.createElement("a");
-link.className = "project-action";
-link.href = p.link;
-link.target = "_blank";
-link.rel = "noopener noreferrer";
-link.textContent = p.action + " ↗";
+    const tags = document.createElement("div");
+    tags.className = "project-tags";
 
-details.append(tags,title,desc,link);
-card.append(imgBox,details);
-ring.appendChild(card);
-});
+    p.tags.forEach(t => {
+      const span = document.createElement("span");
+      span.className = "project-tag";
+      span.textContent = t;
+      tags.appendChild(span);
+    });
 
-const cards = Array.from(ring.children);
+    const title = document.createElement("h3");
+    title.className = "project-title";
+    title.textContent = p.title;
 
-let angle=0, dragging=false, dragVelocity=0;
-let lastX=0,lastT=0,lastFrame=null,lastAngle=null;
-let lastAuto=0,currentIndex=-1,animTarget=null;
-let autoplay=!reduceMotion,idleTimeout=null;
+    const desc = document.createElement("p");
+    desc.className = "project-description";
+    desc.textContent = p.desc;
 
-function normalize(a) {
-return ((a%360)+540)%360-180;
-}
+    const link = document.createElement("a");
+    link.className = "project-action";
+    link.href = p.link;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = p.action + " ↗";
 
-function updateVisuals() {
-let best=0,bestAbs=Infinity;
+    details.append(tags,title,desc,link);
+    card.append(imgBox,details);
+    ring.appendChild(card);
 
-cards.forEach((card,i)=>{
-const diff=normalize(i*step+angle);
-const abs=Math.abs(diff);
-const t=Math.min(abs/130,1);
+  });
 
-card.style.transform=`rotateY(${i*step}deg) translateZ(${radius}px) scale(${1-t*.15})`;
-card.style.opacity=1-t*.55;
-card.style.filter=`brightness(${1-t*.4})`;
-card.style.zIndex=Math.round(1000-abs);
+  const cards = Array.from(ring.children);
 
-if(abs<bestAbs){bestAbs=abs;best=i;}
-});
-return best;
-}
+  let angle = 0;
+  let dragging = false;
+  let dragVelocity = 0;
 
-function updateInfo(index) {
-if(index===currentIndex)return;
-currentIndex=index;
+  let lastX = 0;
+  let lastT = 0;
+  let lastFrame = null;
+  let lastAngle = null;
 
-const p=projects[index];
-const strong=document.createElement("strong");
-strong.textContent=p.title;
+  let lastAuto = 0;
+  let currentIndex = -1;
+  let animTarget = null;
 
-nowPlaying.replaceChildren(
-document.createTextNode("NOW VIEWING — "),
-strong,
-document.createTextNode(" · "+p.category)
-);
+  let autoplay = !reduceMotion;
+  let idleTimeout = null;
 
-counter.textContent=
-String(index+1).padStart(2,"0")+
-" / "+String(count).padStart(2,"0");
-}
+  function normalize(a) {
+    return ((a % 360) + 540) % 360 - 180;
+  }
 
-function pause() {
-autoplay=false;
-clearTimeout(idleTimeout);
-}
+  function updateVisuals() {
 
-function resume() {
-if(reduceMotion)return;
-clearTimeout(idleTimeout);
-idleTimeout=setTimeout(()=>{
-autoplay=true;
-lastAuto=performance.now();
-},3500);
-}
+    let best = 0;
+    let bestAbs = Infinity;
 
-function settle(v=0) {
-const target=Math.round((angle+v*250)/step)*step;
-if(Math.abs(target-angle)<.01)return;
-animTarget={from:angle,to:target,start:performance.now(),duration:reduceMotion?1:450};
-}
+    cards.forEach((card,i) => {
 
-function tick(time) {
-if(lastFrame===null)lastFrame=time;
-const dt=time-lastFrame;
-lastFrame=time;
+      const diff = normalize(i * step + angle);
+      const abs = Math.abs(diff);
+      const t = Math.min(abs / 130,1);
 
-if(animTarget) {
-const p=Math.min((time-animTarget.start)/animTarget.duration,1);
-const eased=1-Math.pow(1-p,3);
-angle=animTarget.from+(animTarget.to-animTarget.from)*eased;
-if(p>=1){angle=animTarget.to;animTarget=null;}
-}
-else if(!dragging&&Math.abs(dragVelocity)>.0005) {
-angle+=dragVelocity*dt;
-dragVelocity*=Math.pow(.94,dt/16.7);
-if(Math.abs(dragVelocity)<.03){
-const v=dragVelocity;
-dragVelocity=0;
-settle(v);
-}
-}
-else if(!dragging&&autoplay&&time-lastAuto>3000) {
-lastAuto=time;
-animTarget={
-from:angle,
-to:(Math.round(angle/step)-1)*step,
-start:time,
-duration:620
-};
-}
+      card.style.transform =
+        `rotateY(${i * step}deg) translateZ(${radius}px) scale(${1-t*.15})`;
 
-if(angle!==lastAngle) {
-ring.style.transform=`rotateY(${angle}deg)`;
-needle.style.transform=`rotate(${angle}deg)`;
-updateInfo(updateVisuals());
-lastAngle=angle;
-}
-requestAnimationFrame(tick);
-}
+      card.style.opacity = 1 - t * .55;
+      card.style.filter = `brightness(${1-t*.4})`;
+      card.style.zIndex = Math.round(1000-abs);
 
-requestAnimationFrame(tick);
+      if(abs < bestAbs) {
+        bestAbs = abs;
+        best = i;
+      }
 
-function navigate(direction) {
-pause();
-animTarget={
-from:angle,
-to:(Math.round(angle/step)-direction)*step,
-start:performance.now(),
-duration:reduceMotion?1:420
-};
-dragVelocity=0;
-resume();
-}
+    });
 
-prevBtn.addEventListener("click",()=>navigate(-1));
-nextBtn.addEventListener("click",()=>navigate(1));
+    return best;
+  }
 
-carousel.addEventListener("pointerdown",e=>{
-if(e.target.closest("a"))return;
-dragging=true;
-animTarget=null;
-dragVelocity=0;
-lastX=e.clientX;
-lastT=performance.now();
-carousel.setPointerCapture(e.pointerId);
-pause();
-});
+  function updateInfo(index) {
 
-carousel.addEventListener("pointermove",e=>{
-if(!dragging)return;
-const now=performance.now();
-const dx=e.clientX-lastX;
-const dt=Math.max(now-lastT,1);
-angle+=dx*.35;
-dragVelocity=reduceMotion?0:(dx*.35)/dt;
-lastX=e.clientX;
-lastT=now;
-});
+    if(index === currentIndex) return;
+    currentIndex = index;
 
-function endDrag() {
-if(!dragging)return;
-dragging=false;
-if(Math.abs(dragVelocity)<=.03){
-dragVelocity=0;
-settle();
-}
-resume();
-}
+    const p = projects[index];
+    const strong = document.createElement("strong");
+    strong.textContent = p.title;
 
-carousel.addEventListener("pointerup",endDrag);
-carousel.addEventListener("pointercancel",endDrag);
+    nowPlaying.replaceChildren(
+      document.createTextNode("NOW VIEWING — "),
+      strong,
+      document.createTextNode(" · " + p.category)
+    );
 
-carousel.addEventListener("keydown",e=>{
-if(e.key==="ArrowRight"){
-navigate(1);
-e.preventDefault();
-}
-if(e.key==="ArrowLeft"){
-navigate(-1);
-e.preventDefault();
-}
-if(e.code==="Space"){
-autoplay=!autoplay;
-if(autoplay)lastAuto=performance.now();
-clearTimeout(idleTimeout);
-e.preventDefault();
-}
-});
+    counter.textContent =
+      String(index+1).padStart(2,"0") +
+      " / " + String(count).padStart(2,"0");
+
+  }
+
+  function pause() {
+    autoplay = false;
+    clearTimeout(idleTimeout);
+  }
+
+  function resume() {
+
+    if(reduceMotion) return;
+
+    clearTimeout(idleTimeout);
+
+    idleTimeout = setTimeout(() => {
+      autoplay = true;
+      lastAuto = performance.now();
+    },3500);
+
+  }
+
+  function settle(v=0) {
+
+    const target = Math.round(
+      (angle + v * 250) / step
+    ) * step;
+
+    if(Math.abs(target-angle) < .01) return;
+
+    animTarget = {
+      from:angle,
+      to:target,
+      start:performance.now(),
+      duration:reduceMotion ? 1 : 450
+    };
+
+  }
+
+  function tick(time) {
+
+    if(lastFrame === null) lastFrame = time;
+
+    const dt = time-lastFrame;
+    lastFrame = time;
+
+    if(animTarget) {
+
+      const p = Math.min(
+        (time-animTarget.start)/animTarget.duration,1
+      );
+
+      const eased = 1-Math.pow(1-p,3);
+
+      angle = animTarget.from +
+        (animTarget.to-animTarget.from)*eased;
+
+      if(p >= 1) {
+        angle = animTarget.to;
+        animTarget = null;
+      }
+
+    }
+
+    else if(!dragging && Math.abs(dragVelocity) > .0005) {
+
+      angle += dragVelocity * dt;
+      dragVelocity *= Math.pow(.94,dt/16.7);
+
+      if(Math.abs(dragVelocity) < .03) {
+        const v = dragVelocity;
+        dragVelocity = 0;
+        settle(v);
+      }
+
+    }
+
+    else if(!dragging && autoplay && time-lastAuto > 3000) {
+
+      lastAuto = time;
+
+      animTarget = {
+        from:angle,
+        to:(Math.round(angle/step)-1)*step,
+        start:time,
+        duration:620
+      };
+
+    }
+
+    if(angle !== lastAngle) {
+
+      ring.style.transform = `rotateY(${angle}deg)`;
+      needle.style.transform = `rotate(${angle}deg)`;
+
+      updateInfo(updateVisuals());
+
+      lastAngle = angle;
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+
+  function navigate(direction) {
+
+    pause();
+
+    animTarget = {
+      from:angle,
+      to:(Math.round(angle/step)-direction)*step,
+      start:performance.now(),
+      duration:reduceMotion ? 1 : 420
+    };
+
+    dragVelocity = 0;
+    resume();
+  }
+
+  prevBtn.addEventListener("click",() => navigate(-1));
+  nextBtn.addEventListener("click",() => navigate(1));
+
+  carousel.addEventListener("pointerdown",e => {
+
+    if(e.target.closest("a")) return;
+
+    dragging = true;
+    animTarget = null;
+    dragVelocity = 0;
+
+    lastX = e.clientX;
+    lastT = performance.now();
+
+    carousel.setPointerCapture(e.pointerId);
+    pause();
+
+  });
+
+  carousel.addEventListener("pointermove",e => {
+
+    if(!dragging) return;
+
+    const now = performance.now();
+    const dx = e.clientX-lastX;
+    const dt = Math.max(now-lastT,1);
+
+    angle += dx*.35;
+    dragVelocity = reduceMotion ? 0 : (dx*.35)/dt;
+
+    lastX = e.clientX;
+    lastT = now;
+
+  });
+
+  function endDrag() {
+
+    if(!dragging) return;
+
+    dragging = false;
+
+    if(Math.abs(dragVelocity) <= .03) {
+      dragVelocity = 0;
+      settle();
+    }
+
+    resume();
+  }
+
+  carousel.addEventListener("pointerup",endDrag);
+  carousel.addEventListener("pointercancel",endDrag);
+
+  carousel.addEventListener("keydown",e => {
+
+    if(e.key === "ArrowRight") {
+      navigate(1);
+      e.preventDefault();
+    }
+
+    if(e.key === "ArrowLeft") {
+      navigate(-1);
+      e.preventDefault();
+    }
+
+    if(e.code === "Space") {
+
+      if(e.target.closest("button,a")) return;
+
+      autoplay = !autoplay;
+
+      if(autoplay) lastAuto = performance.now();
+
+      clearTimeout(idleTimeout);
+      e.preventDefault();
+    }
+
+  });
 
 })();
 </script>
 
 </section>
+
 
 
     <div area class="certificate-marquee-container">
@@ -2229,7 +2328,5 @@ e.preventDefault();
             }
         });
     </script>
-    
 </body>
-
 </html>
