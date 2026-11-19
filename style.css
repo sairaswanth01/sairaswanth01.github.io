@@ -991,7 +991,7 @@ body {
 .project-marquee-container {
     width: 100%;
     overflow: hidden;
-    padding: px 0;
+    padding: 0;
 }
 
 .project-separator {
@@ -1285,7 +1285,8 @@ body {
         left: 50%;
         right: auto;
         transform: translateX(-50%);
-        padding: 0.6rem 1.2rem;
+        max-width: calc(100vw - 24px);
+        padding: 0.25rem;
         transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         display: flex;
         flex-direction: column;
@@ -1293,41 +1294,44 @@ body {
         border-radius: 50px;
     }
 
+    .floating-nav .menu-toggle {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+    }
+
     .floating-nav .nav-links {
-        display: flex;
+        display: none;
         gap: 1rem;
     }
 
     .floating-nav.shrink {
         top: 15px;
-        padding: 0.5rem;
+        padding: 0.25rem;
         transform: translateX(-50%);
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         border-radius: 50px;
-    }
-
-    .floating-nav.shrink .menu-toggle {
-        display: block;
-        padding: 0.4rem 0.6rem;
     }
 
     .floating-nav.shrink:not(.open) .nav-links {
         display: none;
     }
 
-    .floating-nav.shrink.open {
+    .floating-nav.open {
         border-radius: 20px;
         padding: 1rem 1.5rem;
         width: 80vw;
         max-width: 300px;
     }
 
-    .floating-nav.shrink.open .menu-toggle {
+    .floating-nav.open .menu-toggle {
         align-self: flex-end;
         margin-bottom: 0.5rem;
     }
 
-    .floating-nav.shrink.open .nav-links {
+    .floating-nav.open .nav-links {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -2073,6 +2077,243 @@ body {
   }
 }
 
+.certifications-section.is-cylinder-active {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.certificate-cylinder-stage {
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  gap: 0;
+  padding: clamp(98px, 12vh, 120px) 8% 22px;
+  box-sizing: border-box;
+}
+
+.certifications-section.is-cylinder-active .section-heading {
+  margin: 0 auto 10px;
+}
+
+.certifications-section.is-cylinder-active .section-heading p {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.certifications-section.is-cylinder-active .portfolio-feed-controls {
+  width: min(100%, 1050px);
+  margin: 0 auto 4px;
+}
+
+.certifications-section.is-cylinder-active .portfolio-feed-status {
+  min-height: 0;
+  margin: 0 auto;
+}
+
+.certificate-cylinder-component {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  perspective: 3000px;
+  overflow: hidden;
+}
+
+.certifications-section.is-cylinder-active .certifications-container {
+  position: relative;
+  width: min(920px, 90vw);
+  height: min(42vh, 400px);
+  max-width: none;
+  margin: 0 auto;
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.certifications-section.is-cylinder-active .achievement-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-items: center;
+  padding: 26px clamp(24px, 5vw, 52px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.certifications-section.is-cylinder-active .achievement-number {
+  font-size: clamp(34px, 5vw, 58px);
+}
+
+.certificate-cylinder-footer {
+  width: min(920px, 90vw);
+  min-height: 54px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.certifications-section:not(.is-cylinder-active) .certificate-cylinder-footer {
+  display: none;
+}
+
+.certificate-cylinder-label {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.certificate-cylinder-index {
+  color: #80523f;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.certificate-cylinder-label-mask {
+  overflow: clip;
+  padding-bottom: 2px;
+}
+
+.certificate-cylinder-label-name {
+  margin: 0;
+  color: #34231c;
+  font-size: clamp(18px, 2.4vw, 28px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.certificate-cylinder-dots {
+  flex: none;
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.certificate-cylinder-dots button {
+  width: 24px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.certificate-cylinder-dots button::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #70452f;
+  opacity: 0.3;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.certificate-cylinder-dots button:hover::before,
+.certificate-cylinder-dots button[aria-current="true"]::before {
+  opacity: 1;
+  transform: scale(1.35);
+}
+
+.certificate-cylinder-dots button:focus-visible {
+  outline: 2px solid #70452f;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .certificate-cylinder-stage {
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    padding: 130px 6% 14px;
+  }
+
+  .certifications-section.is-cylinder-active .section-heading {
+    margin-bottom: 8px;
+  }
+
+  .certifications-section.is-cylinder-active .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .certifications-section.is-cylinder-active .section-heading p {
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  .certifications-section.is-cylinder-active .portfolio-feed-controls {
+    gap: 6px;
+  }
+
+  .certifications-section.is-cylinder-active .portfolio-feed-controls label:not(.visually-hidden) {
+    flex-basis: auto;
+    font-size: 12px;
+  }
+
+  .certifications-section.is-cylinder-active .portfolio-feed-controls input,
+  .certifications-section.is-cylinder-active .portfolio-feed-controls select {
+    min-height: 36px;
+  }
+
+  .certifications-section.is-cylinder-active .certifications-container {
+    width: min(100%, 520px);
+    height: min(38vh, 320px);
+  }
+
+  .certifications-section.is-cylinder-active .achievement-card {
+    gap: 14px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .certifications-section.is-cylinder-active .achievement-content h3 {
+    font-size: 16px;
+  }
+
+  .certifications-section.is-cylinder-active .achievement-content p {
+    font-size: 12px;
+  }
+
+  .certificate-cylinder-footer {
+    width: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 2px;
+  }
+
+  .certificate-cylinder-label {
+    width: 100%;
+    text-align: center;
+  }
+
+  .certificate-cylinder-label-name {
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .certificate-cylinder-dots {
+    gap: 0;
+    justify-content: center;
+  }
+
+  .certificate-cylinder-dots button {
+    width: 18px;
+  }
+}
+
 /* =================================
    RESEARCH PAPERS SECTION
 ================================= */
@@ -2162,6 +2403,12 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 28px;
+}
+
+.research-grid > .research-card:only-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 700px);
 }
 
 /* Card */
