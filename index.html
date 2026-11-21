@@ -986,6 +986,9 @@
 
 </section>
 
+
+<section id="projects">
+
 <style>
 #projects {
   --bg: radial-gradient(circle at 50% 50%,
@@ -1040,7 +1043,15 @@
   overflow: hidden;
 }
 
-#projects * { box-sizing: border-box; }
+#projects * {
+  box-sizing: border-box;
+}
+
+#projects .projects-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 #projects .projects-stage {
   width: min(100%, 900px);
@@ -1051,16 +1062,18 @@
   font-size: clamp(28px,5vw,46px);
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
 }
 
-#projects .projects-heading span { color: var(--accent); }
+#projects .projects-heading span {
+  color: var(--accent);
+}
 
 #projects .projects-subtitle {
   font-size: 12px;
   color: rgba(36,27,24,.72);
   letter-spacing: 2px;
-  margin-bottom: 35px;
+  margin: 0 0 35px;
 }
 
 #projects .projects-carousel {
@@ -1070,6 +1083,13 @@
   perspective: 2400px;
   user-select: none;
   touch-action: pan-y;
+  outline: none;
+}
+
+#projects .projects-carousel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+  border-radius: 15px;
 }
 
 #projects .projects-ring {
@@ -1092,17 +1112,28 @@
   border-radius: 22px;
   background: rgba(255,250,245,.97);
   border: 1px solid rgba(255,255,255,.85);
-  box-shadow: inset 0 1px 2px rgba(255,255,255,.7),0 20px 45px rgba(78,42,25,.24);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.7),
+    0 20px 45px rgba(78,42,25,.24);
   overflow: hidden;
   cursor: grab;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#projects .project-record:active {
+  cursor: grabbing;
 }
 
 #projects .project-record::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg,hsla(var(--hue),100%,60%,.1),transparent 55%);
+  background: linear-gradient(
+    160deg,
+    hsla(var(--hue),100%,60%,.1),
+    transparent 55%
+  );
   pointer-events: none;
 }
 
@@ -1121,9 +1152,12 @@
   height: 100%;
   object-fit: cover;
   transition: transform .5s;
+  pointer-events: none;
 }
 
-#projects .project-record:hover img { transform: scale(1.08); }
+#projects .project-record:hover img {
+  transform: scale(1.08);
+}
 
 #projects .project-details {
   position: relative;
@@ -1132,6 +1166,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
   text-align: left;
 }
 
@@ -1203,6 +1238,7 @@
   color: #241b18;
   font-size: 23px;
   cursor: pointer;
+  transition: .3s;
 }
 
 #projects .projects-nav:hover {
@@ -1244,7 +1280,9 @@
   color: rgba(36,27,24,.75);
 }
 
-#projects .projects-now-playing strong { color: #241b18; }
+#projects .projects-now-playing strong {
+  color: #241b18;
+}
 
 #projects .projects-counter {
   margin-top: 9px;
@@ -1260,7 +1298,9 @@
   letter-spacing: 1px;
 }
 
-#projects .projects-hint-mobile { display: none; }
+#projects .projects-hint-mobile {
+  display: none;
+}
 
 @media(max-width:600px) {
   #projects {
@@ -1270,51 +1310,113 @@
     padding: 120px 5px 45px;
   }
 
-  #projects .projects-carousel { height: 420px; }
-  #projects .project-image { height: 155px; }
-  #projects .projects-heading { letter-spacing: 1px; }
-  #projects .projects-hint-desktop { display: none; }
-  #projects .projects-hint-mobile { display: inline; }
+  #projects .projects-carousel {
+    height: 420px;
+  }
+
+  #projects .project-image {
+    height: 155px;
+  }
+
+  #projects .projects-heading {
+    letter-spacing: 1px;
+  }
+
+  #projects .projects-hint-desktop {
+    display: none;
+  }
+
+  #projects .projects-hint-mobile {
+    display: inline;
+  }
 }
 
 @media(prefers-reduced-motion:reduce) {
-  #projects * { scroll-behavior: auto !important; }
+  #projects *,
+  #projects *::before,
+  #projects *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 
 <div class="projects-content">
 
-<div class="projects-stage">
+  <div class="projects-stage">
 
-  <h2 class="projects-heading" id="projects-heading">
-    SELECTED <span>WORKS</span>
-  </h2>
+    <h2 class="projects-heading" id="projects-heading">
+      SELECTED <span>WORKS</span>
+    </h2>
 
-  <p class="projects-subtitle">
-    EXPLORE MY CREATIVE & DEVELOPMENT PROJECTS
-  </p>
+    <p class="projects-subtitle">
+      EXPLORE MY CREATIVE & DEVELOPMENT PROJECTS
+    </p>
 
-  <div class="projects-carousel"
-       id="projectsCarousel"
-       tabindex="0"
-       role="region"
-       aria-label="Portfolio projects carousel">
-
-    <div class="projects-ring" id="projectsRing"></div>
-
-  </div>
-
-  <div class="projects-controls">
-
-    <button class="projects-nav" id="projectsPrev"
-            aria-label="Previous project">&#8249;</button>
-
-    <div class="projects-dial">
-      <span class="projects-needle" id="projectsNeedle"></span>
+    <div
+      class="projects-carousel"
+      id="projectsCarousel"
+      tabindex="0"
+      role="region"
+      aria-label="Portfolio projects carousel"
+      aria-roledescription="carousel"
+    >
+      <div class="projects-ring" id="projectsRing"></div>
     </div>
 
-    <button class="projects-nav" id="projectsNext"
-            aria-label="Next project">&#8250;</button>
+    <div class="projects-controls">
+
+      <button
+        class="projects-nav"
+        id="projectsPrev"
+        type="button"
+        aria-label="Previous project"
+      >
+        &#8249;
+      </button>
+
+      <div class="projects-dial" aria-hidden="true">
+        <span
+          class="projects-needle"
+          id="projectsNeedle"
+        ></span>
+      </div>
+
+      <button
+        class="projects-nav"
+        id="projectsNext"
+        type="button"
+        aria-label="Next project"
+      >
+        &#8250;
+      </button>
+
+    </div>
+
+    <div
+      class="projects-now-playing"
+      id="projectsNowPlaying"
+      aria-live="polite"
+    >
+      NOW VIEWING — SELECTED PROJECT
+    </div>
+
+    <div
+      class="projects-counter"
+      id="projectsCounter"
+      aria-live="polite"
+    >
+      01 / 09
+    </div>
+
+    <p class="projects-hint">
+      <span class="projects-hint-desktop">
+        DRAG TO EXPLORE · USE ARROW KEYS TO NAVIGATE
+      </span>
+      <span class="projects-hint-mobile">
+        SWIPE TO EXPLORE
+      </span>
+    </p>
 
   </div>
 </div>
@@ -1323,92 +1425,117 @@
 (function () {
 
   const root = document.getElementById("projects");
-  if (!root || root.dataset.initialized) return;
+
+  if (!root || root.dataset.initialized === "true") return;
+
   root.dataset.initialized = "true";
 
+  // PROJECT DATA
+
   const projects = [
+
     {
-      title:"Chendhuran College Website",
-      desc:"A comprehensive academic portal providing student and faculty resources.",
-      category:"Website",
-      tags:["Web Development","Education"],
-      image:"https://s.wordpress.com/mshots/v1/https%3A%2F%2Fchendhuran.ac.in%2F?w=800",
-      link:"https://chendhuran.ac.in/",
-      action:"Live Demo",hue:210
+      title: "Chendhuran College Website",
+      desc: "A comprehensive academic portal providing student and faculty resources.",
+      category: "Website",
+      tags: ["Web Development", "Education"],
+      image: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fchendhuran.ac.in%2F?w=800",
+      link: "https://chendhuran.ac.in/",
+      action: "Live Demo",
+      hue: 210
     },
+
     {
-      title:"Heart Health Awareness",
-      desc:"A minimalist social media graphic promoting healthy eating and heart health.",
-      category:"Graphic Design",
-      tags:["Social Media","Design"],
-      image:"projects/Apple Transparent -1.jpg",
-      link:"projects/Apple Transparent -1.jpg",
-      action:"View Design",hue:350
+      title: "Heart Health Awareness",
+      desc: "A minimalist social media graphic promoting healthy eating and heart health.",
+      category: "Graphic Design",
+      tags: ["Social Media", "Design"],
+      image: "projects/Apple Transparent -1.jpg",
+      link: "projects/Apple Transparent -1.jpg",
+      action: "View Design",
+      hue: 350
     },
+
     {
-      title:"Strawberry Ice Cream Ad",
-      desc:"A product advertisement focusing on appetite appeal and visual composition.",
-      category:"Graphic Design",
-      tags:["Advertisement","Product"],
-      image:"projects/ICE CREAM RGB.jpg",
-      link:"projects/ICE CREAM RGB.jpg",
-      action:"View Design",hue:330
+      title: "Strawberry Ice Cream Ad",
+      desc: "A product advertisement focusing on appetite appeal and visual composition.",
+      category: "Graphic Design",
+      tags: ["Advertisement", "Product"],
+      image: "projects/ICE CREAM RGB.jpg",
+      link: "projects/ICE CREAM RGB.jpg",
+      action: "View Design",
+      hue: 330
     },
+
     {
-      title:"Polarize Brand Identity",
-      desc:"A modern brand identity design featuring logo creation and professional presentation.",
-      category:"Graphic Design",
-      tags:["Branding","Logo"],
-      image:"projects/AC logo Polarize.jpg",
-      link:"projects/AC logo Polarize.jpg",
-      action:"View Design",hue:190
+      title: "Polarize Brand Identity",
+      desc: "A modern brand identity design featuring logo creation and professional presentation.",
+      category: "Graphic Design",
+      tags: ["Branding", "Logo"],
+      image: "projects/AC logo Polarize.jpg",
+      link: "projects/AC logo Polarize.jpg",
+      action: "View Design",
+      hue: 190
     },
+
     {
-      title:"Scent Product Poster",
-      desc:"A sophisticated product poster emphasizing elegance and premium aesthetics.",
-      category:"Graphic Design",
-      tags:["Poster","Product"],
-      image:"projects/Scent Poster.jpg",
-      link:"projects/Scent Poster.jpg",
-      action:"View Design",hue:40
+      title: "Scent Product Poster",
+      desc: "A sophisticated product poster emphasizing elegance and premium aesthetics.",
+      category: "Graphic Design",
+      tags: ["Poster", "Product"],
+      image: "projects/Scent Poster.jpg",
+      link: "projects/Scent Poster.jpg",
+      action: "View Design",
+      hue: 40
     },
+
     {
-      title:"Sprite Refreshment Ad",
-      desc:"A vibrant advertisement poster focusing on refreshment and brand presentation.",
-      category:"Graphic Design",
-      tags:["Advertisement","Branding"],
-      image:"projects/Sprite AD Poster CYMK.jpg",
-      link:"projects/Sprite AD Poster CYMK.jpg",
-      action:"View Design",hue:120
+      title: "Sprite Refreshment Ad",
+      desc: "A vibrant advertisement poster focusing on refreshment and brand presentation.",
+      category: "Graphic Design",
+      tags: ["Advertisement", "Branding"],
+      image: "projects/Sprite AD Poster CYMK.jpg",
+      link: "projects/Sprite AD Poster CYMK.jpg",
+      action: "View Design",
+      hue: 120
     },
+
     {
-      title:"INVENTRA",
-      desc:"A smart inventory management system for products, stock, sales, purchases and suppliers.",
-      category:"Published Project",
-      tags:["PHP","MySQL"],
-      image:"projects/inventra.png",
-      link:"https://invtmgmtsm.gt.tc/",
-      action:"Live Demo",hue:170
+      title: "INVENTRA",
+      desc: "A smart inventory management system for products, stock, sales, purchases and suppliers.",
+      category: "Published Project",
+      tags: ["PHP", "MySQL"],
+      image: "projects/inventra.png",
+      link: "https://invtmgmtsm.gt.tc/",
+      action: "Live Demo",
+      hue: 170
     },
+
     {
-      title:"Medi-AI",
-      desc:"An intelligent healthcare monitoring and patient management system.",
-      category:"Published Project",
-      tags:["PHP","Healthcare"],
-      image:"projects/mediai.png",
-      link:"https://mediaism.gt.tc/",
-      action:"Live Demo",hue:270
+      title: "Medi-AI",
+      desc: "An intelligent healthcare monitoring and patient management system.",
+      category: "Published Project",
+      tags: ["PHP", "Healthcare"],
+      image: "projects/mediai.png",
+      link: "https://mediaism.gt.tc/",
+      action: "Live Demo",
+      hue: 270
     },
+
     {
-      title:"EduSphere AI",
-      desc:"An intelligent campus ecosystem for academic analytics and AI-powered learning management.",
-      category:"Published Project",
-      tags:["PHP","AI","MySQL"],
-      image:"projects/edusphere.png",
-      link:"https://edusphereaism.xo.je/",
-      action:"Live Demo",hue:220
+      title: "EduSphere AI",
+      desc: "An intelligent campus ecosystem for academic analytics and AI-powered learning management.",
+      category: "Published Project",
+      tags: ["PHP", "AI", "MySQL"],
+      image: "projects/edusphere.png",
+      link: "https://edusphereaism.xo.je/",
+      action: "Live Demo",
+      hue: 220
     }
+
   ];
+
+  // ELEMENT REFERENCES
 
   const ring = root.querySelector("#projectsRing");
   const carousel = root.querySelector("#projectsCarousel");
@@ -1418,34 +1545,63 @@
   const prevBtn = root.querySelector("#projectsPrev");
   const nextBtn = root.querySelector("#projectsNext");
 
+  if (
+    !ring || !carousel || !needle ||
+    !nowPlaying || !counter || !prevBtn || !nextBtn
+  ) {
+    console.error("Projects carousel: Required elements are missing.");
+    root.dataset.initialized = "false";
+    return;
+  }
+
   const count = projects.length;
   const step = 360 / count;
-
-  const cardWidth = parseFloat(
-    getComputedStyle(root).getPropertyValue("--card-w")
-  );
-
-  const radius = Math.round(
-    (cardWidth / 2) / Math.tan(Math.PI / count)
-  );
 
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  projects.forEach(p => {
+  // RESPONSIVE GEOMETRY
+
+  let radius = 0;
+
+  function updateGeometry() {
+
+    const cardWidth = parseFloat(
+      getComputedStyle(root).getPropertyValue("--card-w")
+    );
+
+    radius = Math.round(
+      (cardWidth / 2) / Math.tan(Math.PI / count)
+    );
+
+    updateVisuals();
+  }
+
+  // CREATE PROJECT CARDS
+
+  projects.forEach((p) => {
 
     const card = document.createElement("article");
+
     card.className = "project-record";
-    card.style.setProperty("--hue",p.hue+"deg");
+    card.style.setProperty("--hue", p.hue + "deg");
 
     const imgBox = document.createElement("div");
     imgBox.className = "project-image";
 
     const img = document.createElement("img");
+
     img.src = p.image;
     img.alt = p.title;
     img.loading = "lazy";
+    img.draggable = false;
+
+    img.onerror = function () {
+      this.style.opacity = "0";
+      imgBox.style.background = "#e5d8ce";
+    };
+
     imgBox.appendChild(img);
 
     const details = document.createElement("div");
@@ -1454,37 +1610,49 @@
     const tags = document.createElement("div");
     tags.className = "project-tags";
 
-    p.tags.forEach(t => {
+    p.tags.forEach((t) => {
+
       const span = document.createElement("span");
+
       span.className = "project-tag";
       span.textContent = t;
+
       tags.appendChild(span);
+
     });
 
     const title = document.createElement("h3");
+
     title.className = "project-title";
     title.textContent = p.title;
 
     const desc = document.createElement("p");
+
     desc.className = "project-description";
     desc.textContent = p.desc;
 
     const link = document.createElement("a");
+
     link.className = "project-action";
     link.href = p.link;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     link.textContent = p.action + " ↗";
 
-    details.append(tags,title,desc,link);
-    card.append(imgBox,details);
+    details.append(tags, title, desc, link);
+
+    card.append(imgBox, details);
+
     ring.appendChild(card);
 
   });
 
   const cards = Array.from(ring.children);
 
+  // CAROUSEL STATE
+
   let angle = 0;
+
   let dragging = false;
   let dragVelocity = 0;
 
@@ -1493,52 +1661,73 @@
   let lastFrame = null;
   let lastAngle = null;
 
-  let lastAuto = 0;
+  let lastAuto = performance.now();
+
   let currentIndex = -1;
+
   let animTarget = null;
 
   let autoplay = !reduceMotion;
   let idleTimeout = null;
 
+  // HELPERS
+
   function normalize(a) {
+
     return ((a % 360) + 540) % 360 - 180;
+
   }
+
+  // UPDATE CARD POSITIONS
 
   function updateVisuals() {
 
     let best = 0;
     let bestAbs = Infinity;
 
-    cards.forEach((card,i) => {
+    cards.forEach((card, i) => {
 
       const diff = normalize(i * step + angle);
+
       const abs = Math.abs(diff);
-      const t = Math.min(abs / 130,1);
+
+      const t = Math.min(abs / 130, 1);
 
       card.style.transform =
-        `rotateY(${i * step}deg) translateZ(${radius}px) scale(${1-t*.15})`;
+        `rotateY(${i * step}deg) translateZ(${radius}px) scale(${1 - t * .15})`;
 
       card.style.opacity = 1 - t * .55;
-      card.style.filter = `brightness(${1-t*.4})`;
-      card.style.zIndex = Math.round(1000-abs);
 
-      if(abs < bestAbs) {
+      card.style.filter =
+        `brightness(${1 - t * .4})`;
+
+      card.style.zIndex = Math.round(1000 - abs);
+
+      if (abs < bestAbs) {
+
         bestAbs = abs;
         best = i;
+
       }
 
     });
 
     return best;
+
   }
+
+  // UPDATE PROJECT INFORMATION
 
   function updateInfo(index) {
 
-    if(index === currentIndex) return;
+    if (index === currentIndex) return;
+
     currentIndex = index;
 
     const p = projects[index];
+
     const strong = document.createElement("strong");
+
     strong.textContent = p.title;
 
     nowPlaying.replaceChildren(
@@ -1548,210 +1737,342 @@
     );
 
     counter.textContent =
-      String(index+1).padStart(2,"0") +
-      " / " + String(count).padStart(2,"0");
+      String(index + 1).padStart(2, "0") +
+      " / " +
+      String(count).padStart(2, "0");
 
   }
+
+  // PAUSE AUTOPLAY
 
   function pause() {
+
     autoplay = false;
+
     clearTimeout(idleTimeout);
+
   }
+
+  // RESUME AUTOPLAY
 
   function resume() {
 
-    if(reduceMotion) return;
+    if (reduceMotion) return;
 
     clearTimeout(idleTimeout);
 
     idleTimeout = setTimeout(() => {
+
       autoplay = true;
+
       lastAuto = performance.now();
-    },3500);
+
+    }, 3500);
 
   }
 
-  function settle(v=0) {
+  // SETTLE TO NEAREST CARD
+
+  function settle(v = 0) {
 
     const target = Math.round(
       (angle + v * 250) / step
     ) * step;
 
-    if(Math.abs(target-angle) < .01) return;
+    if (Math.abs(target - angle) < .01) return;
 
     animTarget = {
-      from:angle,
-      to:target,
-      start:performance.now(),
-      duration:reduceMotion ? 1 : 450
+
+      from: angle,
+      to: target,
+      start: performance.now(),
+      duration: reduceMotion ? 1 : 450
+
     };
 
   }
 
+  // ANIMATION LOOP
+
   function tick(time) {
 
-    if(lastFrame === null) lastFrame = time;
+    if (lastFrame === null) {
+      lastFrame = time;
+    }
 
-    const dt = time-lastFrame;
+    const dt = time - lastFrame;
+
     lastFrame = time;
 
-    if(animTarget) {
+    // SMOOTH NAVIGATION
+
+    if (animTarget) {
 
       const p = Math.min(
-        (time-animTarget.start)/animTarget.duration,1
+        (time - animTarget.start) / animTarget.duration,
+        1
       );
 
-      const eased = 1-Math.pow(1-p,3);
+      const eased = 1 - Math.pow(1 - p, 3);
 
       angle = animTarget.from +
-        (animTarget.to-animTarget.from)*eased;
+        (animTarget.to - animTarget.from) * eased;
 
-      if(p >= 1) {
+      if (p >= 1) {
+
         angle = animTarget.to;
         animTarget = null;
+
       }
 
     }
 
-    else if(!dragging && Math.abs(dragVelocity) > .0005) {
+    // DRAG MOMENTUM
+
+    else if (
+      !dragging &&
+      Math.abs(dragVelocity) > .0005
+    ) {
 
       angle += dragVelocity * dt;
-      dragVelocity *= Math.pow(.94,dt/16.7);
 
-      if(Math.abs(dragVelocity) < .03) {
+      dragVelocity *= Math.pow(.94, dt / 16.7);
+
+      if (Math.abs(dragVelocity) < .03) {
+
         const v = dragVelocity;
+
         dragVelocity = 0;
+
         settle(v);
+
       }
 
     }
 
-    else if(!dragging && autoplay && time-lastAuto > 3000) {
+    // AUTOPLAY
+
+    else if (
+      !dragging &&
+      autoplay &&
+      time - lastAuto > 3000
+    ) {
 
       lastAuto = time;
 
       animTarget = {
-        from:angle,
-        to:(Math.round(angle/step)-1)*step,
-        start:time,
-        duration:620
+
+        from: angle,
+
+        to: (Math.round(angle / step) - 1) * step,
+
+        start: time,
+
+        duration: reduceMotion ? 1 : 620
+
       };
 
     }
 
-    if(angle !== lastAngle) {
+    // UPDATE DISPLAY
+
+    if (angle !== lastAngle) {
 
       ring.style.transform = `rotateY(${angle}deg)`;
+
       needle.style.transform = `rotate(${angle}deg)`;
 
       updateInfo(updateVisuals());
 
       lastAngle = angle;
+
     }
 
     requestAnimationFrame(tick);
+
   }
 
+  // START ANIMATION
+
+  updateGeometry();
+
   requestAnimationFrame(tick);
+
+  // NAVIGATION
 
   function navigate(direction) {
 
     pause();
 
     animTarget = {
-      from:angle,
-      to:(Math.round(angle/step)-direction)*step,
-      start:performance.now(),
-      duration:reduceMotion ? 1 : 420
+
+      from: angle,
+
+      to: (Math.round(angle / step) - direction) * step,
+
+      start: performance.now(),
+
+      duration: reduceMotion ? 1 : 420
+
     };
 
     dragVelocity = 0;
+
     resume();
+
   }
 
-  prevBtn.addEventListener("click",() => navigate(-1));
-  nextBtn.addEventListener("click",() => navigate(1));
+  prevBtn.addEventListener("click", () => {
+    navigate(-1);
+  });
 
-  carousel.addEventListener("pointerdown",e => {
+  nextBtn.addEventListener("click", () => {
+    navigate(1);
+  });
 
-    if(e.target.closest("a")) return;
+  // POINTER DRAG
+
+  carousel.addEventListener("pointerdown", (e) => {
+
+    if (e.target.closest("a")) return;
+
+    if (e.button !== undefined && e.button !== 0) return;
 
     dragging = true;
+
     animTarget = null;
+
     dragVelocity = 0;
 
     lastX = e.clientX;
+
     lastT = performance.now();
 
     carousel.setPointerCapture(e.pointerId);
+
     pause();
 
   });
 
-  carousel.addEventListener("pointermove",e => {
+  carousel.addEventListener("pointermove", (e) => {
 
-    if(!dragging) return;
+    if (!dragging) return;
 
     const now = performance.now();
-    const dx = e.clientX-lastX;
-    const dt = Math.max(now-lastT,1);
 
-    angle += dx*.35;
-    dragVelocity = reduceMotion ? 0 : (dx*.35)/dt;
+    const dx = e.clientX - lastX;
+
+    const dt = Math.max(now - lastT, 1);
+
+    angle += dx * .35;
+
+    dragVelocity = reduceMotion
+      ? 0
+      : (dx * .35) / dt;
 
     lastX = e.clientX;
+
     lastT = now;
 
   });
 
-  function endDrag() {
+  // END DRAG
 
-    if(!dragging) return;
+  function endDrag(e) {
+
+    if (!dragging) return;
 
     dragging = false;
 
-    if(Math.abs(dragVelocity) <= .03) {
+    if (
+      e &&
+      carousel.hasPointerCapture &&
+      carousel.hasPointerCapture(e.pointerId)
+    ) {
+      carousel.releasePointerCapture(e.pointerId);
+    }
+
+    if (Math.abs(dragVelocity) <= .03) {
+
       dragVelocity = 0;
+
       settle();
+
     }
 
     resume();
+
   }
 
-  carousel.addEventListener("pointerup",endDrag);
-  carousel.addEventListener("pointercancel",endDrag);
+  carousel.addEventListener("pointerup", endDrag);
 
-  carousel.addEventListener("keydown",e => {
+  carousel.addEventListener("pointercancel", endDrag);
 
-    if(e.key === "ArrowRight") {
+  // KEYBOARD NAVIGATION
+
+  carousel.addEventListener("keydown", (e) => {
+
+    if (e.key === "ArrowRight") {
+
       navigate(1);
+
       e.preventDefault();
+
     }
 
-    if(e.key === "ArrowLeft") {
+    if (e.key === "ArrowLeft") {
+
       navigate(-1);
+
       e.preventDefault();
+
     }
 
-    if(e.code === "Space") {
-
-      if(e.target.closest("button,a")) return;
+    if (e.code === "Space") {
 
       autoplay = !autoplay;
 
-      if(autoplay) lastAuto = performance.now();
+      if (autoplay) {
+
+        lastAuto = performance.now();
+
+      }
 
       clearTimeout(idleTimeout);
+
       e.preventDefault();
+
     }
 
   });
 
+  // RESPONSIVE RESIZE
+
+  let resizeFrame = null;
+
+  window.addEventListener("resize", () => {
+
+    cancelAnimationFrame(resizeFrame);
+
+    resizeFrame = requestAnimationFrame(() => {
+
+      updateGeometry();
+
+      lastAngle = null;
+
+    });
+
+  });
+
+  // INITIAL STATE
+
+  updateInfo(0);
+
 })();
 </script>
 
-</div>
 </section>
+
 
     <div class="certificate-marquee-container">
         <div class="certificate-separator" onclick="window.location.hash='#connect'">
